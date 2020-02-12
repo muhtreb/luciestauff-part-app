@@ -32,7 +32,13 @@ export default {
   /*
    ** Global CSS
    */
-  css: [{ src: '~assets/scss/app.scss', lang: 'sass' }],
+  css: [
+    { src: '~assets/scss/app.scss', lang: 'sass' },
+    {
+      src: 'slick-carousel/slick/slick.css',
+      lang: 'css'
+    }
+  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -62,8 +68,13 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-purgecss'
   ],
+
+  purgeCSS: {
+    enabled: false
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -78,6 +89,19 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {},
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      }
+    }
   }
 }

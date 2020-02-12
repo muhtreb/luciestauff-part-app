@@ -76,16 +76,18 @@
         </h2>
       </div>
 
-      <slick ref="slick" :options="slickOptions">
-        <div
-          v-for="(portfolioImage, index) in portfolioImages"
-          :key="`carousel-${index}`"
-        >
-          <img
-            :src="require(`@/assets/img/portfolio/${portfolioImage.path}`)"
-          />
-        </div>
-      </slick>
+      <client-only>
+        <slick ref="slick" :options="slickOptions">
+          <div
+            v-for="(portfolioImage, index) in portfolioImages"
+            :key="`carousel-${index}`"
+          >
+            <img
+              :src="require(`@/assets/img/portfolio/${portfolioImage.path}`)"
+            />
+          </div>
+        </slick>
+      </client-only>
     </div>
   </div>
 </template>

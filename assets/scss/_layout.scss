@@ -1,0 +1,154 @@
+body {
+  font-family: 'Josefin Sans', serif;
+}
+
+/* Transitions using the page hook */
+/*
+page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease-out;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+  transform-origin: 50% 50%;
+}
+*/
+.header {
+  .header-nav {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-left: 20px;
+      margin-right: 20px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &.nuxt-link-active {
+        color: #cfbbb4;
+      }
+    }
+
+    .header-nav-logo {
+      a {
+        img {
+          width: 300px;
+        }
+      }
+    }
+  }
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background-position: center;
+  background-color: #f5e6df;
+  background-size: cover;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: 1s ease background-image, 0.5s ease height, 0.5s ease opacity,
+    0.5s ease background-color;
+  &.banner--hidden {
+    height: 0 !important;
+    opacity: 0;
+  }
+  .banner-title {
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+}
+
+.footer {
+  padding: 100px 0;
+  background-color: #f5e6df;
+  .footer-contact {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    .footer-contact-details {
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+      text-align: center;
+      line-height: 40px;
+    }
+    .footer-contact-social-links {
+      display: flex;
+      a {
+        display: block;
+        color: #1c5155;
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .footer-contact-title {
+      margin-top: 10px;
+      text-align: center;
+      color: #194339;
+      font-size: 32px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 50px;
+    }
+  }
+
+  .footer-instagram {
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    .footer-instagram-title {
+      width: 40px;
+      text-align: left;
+      height: 100%;
+      flex-shrink: 0;
+      span {
+        transform: rotate(-90deg);
+        text-transform: uppercase;
+        transform-origin: 0 100%;
+        position: absolute;
+        line-height: 25px;
+        font-size: 24px;
+        letter-spacing: 4px;
+        z-index: 10;
+        height: 25px;
+        width: 100%;
+        left: 35px;
+        bottom: 20px;
+      }
+    }
+    .footer-instagram-pictures {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .footer-instagram-picture {
+        width: 32%;
+        margin-bottom: 10px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

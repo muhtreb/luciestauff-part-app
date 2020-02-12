@@ -1,0 +1,30 @@
+body.page-portfolio {
+  .banner {
+    background-image: url('../img/banner-portfolio.jpg');
+    margin-bottom: 0;
+  }
+
+  .portfolio-nav {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    border-bottom: 3px solid black;
+    a {
+      text-transform: uppercase;
+      margin-right: 30px;
+      font-size: 18px;
+      &:last-child {
+        margin-right: 0;
+      }
+      &.nuxt-link-active {
+        color: #e3c4d3;
+      }
+    }
+  }
+
+  .portfolio-masonry {
+    .portfolio-masonry-item {
+      margin-bottom: 20px;
+    }
+  }
+}

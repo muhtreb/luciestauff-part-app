@@ -1,23 +1,30 @@
 <template>
   <div>
-    <h1>Shop</h1>
+    <div class="container">
+      <div class="shop-container">
+        <nav class="shop-categories">
+          <nuxt-link
+            :to="`/shop/category/${productCategory.slug}`"
+            v-for="productCategory in productCategories"
+            :key="productCategory.id"
+            >{{ productCategory.name }}</nuxt-link
+          >
+        </nav>
+        <div class="shop-content">
+          <nuxt-child :key="$route.name"></nuxt-child>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  head() {
+  async asyncData({ app, params, store }) {
+    await store.dispatch('shop/getProductCategories')
     return {
-      bodyAttrs: {
-        class: ['page-shop']
-      }
+      productCategories: store.state.shop.productCategories
     }
-  },
-  created() {
-    this.$store.commit('banner/setBanner', {
-      show: true,
-      title: 'Shop'
-    })
   }
 }
 </script>

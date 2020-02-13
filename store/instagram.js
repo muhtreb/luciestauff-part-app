@@ -4,10 +4,8 @@ export const state = () => ({
 
 export const actions = {
   async getImages({ commit }, params) {
-    const response = await this.$axios.get('/instagram', {
-      params
-    })
-    commit('setImages', response.data.data)
+    const response = await this.$instagramRepository.getPictures(params)
+    commit('setImages', response.data)
   }
 }
 

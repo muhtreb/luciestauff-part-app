@@ -95,7 +95,7 @@ export default {
         formData.append(key, value)
       }
       try {
-        await this.$axios.post('/contact', formData)
+        await this.$contactRepository.createContactMessage(formData)
 
         this.contact = {}
         this.success = true

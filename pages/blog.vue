@@ -3,12 +3,15 @@
     <div class="container">
       <div class="blog-container">
         <div class="blog-content">
-          <nuxt-child></nuxt-child>
+          <nuxt-child :key="$route.name"></nuxt-child>
         </div>
         <nav class="blog-categories">
-          <nuxt-link to="/blog/category/category1">Category 1</nuxt-link>
-          <nuxt-link to="/blog/category/category2">Category 3</nuxt-link>
-          <nuxt-link to="/blog/category/category3">Category 3</nuxt-link>
+          <nuxt-link
+            :to="`/blog/category/${blogPostCategory.slug}`"
+            v-for="blogPostCategory in blogPostCategories"
+            :key="blogPostCategory.id"
+            >{{ blogPostCategory.name }}</nuxt-link
+          >
         </nav>
       </div>
     </div>
@@ -16,5 +19,12 @@
 </template>
 
 <script>
-export default {}
+export default {
+  async asyncData({ app, params, store }) {
+    await store.dispatch('blog/getBlogPostCategories')
+    return {
+      blogPostCategories: store.state.blog.blogPostCategories
+    }
+  }
+}
 </script>

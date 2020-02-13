@@ -37,6 +37,7 @@
     "masonry-layout": "^4.2.2",
     "nuxt-purgecss": "^0.2.1",
     "prettier": "^1.19.1",
+    "qs": "^6.9.1",
     "vue-carousel": "^0.18.0",
     "vue-masonry": "^0.11.8",
     "vue-masonry-css": "^1.0.3",

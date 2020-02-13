@@ -25,7 +25,9 @@
       <h1 v-if="bannerTitle" class="banner-title" v-html="bannerTitle"></h1>
     </div>
 
-    <nuxt />
+    <div class="content-wrapper">
+      <nuxt />
+    </div>
 
     <footer class="footer">
       <div class="container">

@@ -1,23 +1,14 @@
 <template>
   <div>
-    <no-ssr>
-      <masonry :cols="3" :gutter="20" class="portfolio-masonry">
-        <div
-          class="portfolio-masonry-item"
-          v-for="(image, id) in getImages"
-          :key="`image-${id}`"
-        >
-          <img :src="require(`@/assets/img/portfolio/${image.path}`)" />
-        </div>
-      </masonry>
-    </no-ssr>
+    <Portfolio :images="getImages"></Portfolio>
   </div>
 </template>
 
 <script>
-import NoSSR from 'vue-no-ssr'
+import Portfolio from '@/components/Portfolio'
 
 export default {
+  components: { Portfolio },
   head() {
     return {
       bodyAttrs: {
@@ -30,12 +21,6 @@ export default {
       show: true,
       title: 'Portfolio'
     })
-    if (typeof this.$redrawVueMasonry === 'function') {
-      this.$redrawVueMasonry()
-    }
-  },
-  components: {
-    'no-ssr': NoSSR
   },
   asyncData({ app, params, error, payload, store }) {
     return {

@@ -8,33 +8,6 @@ body.page-contact {
       text-align: center;
     }
   }
-  .contact-title {
-    font-size: 28px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    color: #395b5d;
-    margin-bottom: 20px;
-    span {
-      background: white;
-      padding-left: 10px;
-      z-index: 100;
-      position: relative;
-    }
-    &:after {
-      z-index: 99;
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 100%;
-      height: 3px;
-      background: #395b5d;
-      margin-top: -1.5px;
-    }
-  }
 
   .contact-form {
     textarea,

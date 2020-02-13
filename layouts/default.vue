@@ -31,8 +31,8 @@
 
     <footer class="footer">
       <div class="container">
-        <div class="flex">
-          <div class="footer-instagram w-1/2">
+        <div class="flex flex-wrap flex-col-reverse desktop:flex-row">
+          <div class="footer-instagram w-full desktop:w-1/2 mt-10 desktop:mt-0">
             <h3 class="footer-instagram-title">
               <span>Instagram</span>
             </h3>
@@ -48,7 +48,7 @@
               </a>
             </div>
           </div>
-          <div class="footer-contact w-1/2">
+          <div class="footer-contact w-full desktop:w-1/2 ">
             <h2 class="footer-contact-title">L'atelier Hair & Make Up</h2>
             <div class="footer-contact-details">
               Keep in touch<br />

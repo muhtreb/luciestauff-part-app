@@ -1,13 +1,13 @@
 <template>
   <div class="shop-products">
-    <div class="flex -mx-2">
-      <Product
-        class="px-2"
+    <div class="flex flex-wrap -mx-2">
+      <div
+        class="lg:w-1/3 md:w-1/2 w-full px-2"
         v-for="product in products"
         :key="product.id"
-        :product="product"
       >
-      </Product>
+        <Product :product="product"> </Product>
+      </div>
     </div>
   </div>
 </template>

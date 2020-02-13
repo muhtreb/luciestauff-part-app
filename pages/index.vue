@@ -155,29 +155,33 @@
 
     <div class="portfolio">
       <div class="container">
-        <h2 class="portfolio-title">
+        <h2 class="title title--right-lined">
           <span>Portfolio</span>
         </h2>
       </div>
 
-      <client-only>
-        <slick ref="slick" :options="slickOptions">
-          <div
-            v-for="(portfolioImage, index) in portfolioImages"
-            :key="`carousel-${index}`"
-          >
-            <img
-              :src="require(`@/assets/img/portfolio/${portfolioImage.path}`)"
-            />
-          </div>
-        </slick>
-      </client-only>
+      <PortfolioSlider></PortfolioSlider>
+    </div>
+
+    <div class="blog">
+      <div class="container">
+        <BlogPost
+          v-for="blogPost in blogPosts"
+          :key="blogPost.id"
+          :blog-post="blogPost"
+          :show-products="false"
+        ></BlogPost>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import BlogPost from '@/components/BlogPost'
+import PortfolioSlider from '@/components/PortfolioSlider'
+
 export default {
+  components: { BlogPost, PortfolioSlider },
   head() {
     return {
       bodyAttrs: {
@@ -191,54 +195,19 @@ export default {
       title: "L'atelier hair & make up"
     })
   },
+  async asyncData({ app, params, store }) {
+    await store.dispatch('blog/getBlogPosts', {
+      per_page: 1,
+      sort_by: ['created_at'],
+      sort_desc: [true]
+    })
+    return {
+      blogPosts: store.state.blog.blogPosts
+    }
+  },
   data() {
     return {
-      aboutNav: 'biography',
-      slickOptions: {
-        infinite: true,
-        speed: 300,
-        slidesToShow: 3,
-        centerMode: true,
-        variableWidth: true,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        adaptiveHeight: true,
-        appendArrows: false
-        // Any other options that can be got from plugin documentation
-      },
-      portfolioImages: [
-        {
-          path: 'hair/1145.jpg'
-        },
-        {
-          path: 'hair/1146.jpg'
-        },
-        {
-          path: 'hair/1148.jpg'
-        },
-        {
-          path: 'hair/1149.jpg'
-        },
-        {
-          path: 'hair/1154.jpg'
-        },
-        {
-          path: 'hair/1155.jpg'
-        },
-        {
-          path: 'hair/1335.jpg'
-        },
-        {
-          path: 'hair/1336.jpg'
-        },
-        {
-          path: 'hair/1339.jpg'
-        },
-        {
-          path: 'hair/1341.jpg'
-        }
-      ]
+      aboutNav: 'biography'
     }
   },
   methods: {

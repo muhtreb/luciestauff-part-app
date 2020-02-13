@@ -14,7 +14,11 @@ export default {
     }
   },
   async asyncData({ app, params, store }) {
-    await store.dispatch('blog/getBlogPosts')
+    await store.dispatch('blog/getBlogPosts', {
+      per_page: 3,
+      sort_by: ['created_at'],
+      sort_desc: [true]
+    })
     return {
       blogPosts: store.state.blog.blogPosts
     }

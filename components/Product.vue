@@ -26,3 +26,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.product {
+  margin-bottom: 30px;
+  .product-image {
+    img {
+      width: 100%;
+    }
+  }
+}
+</style>

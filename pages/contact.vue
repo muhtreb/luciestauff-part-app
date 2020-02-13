@@ -8,7 +8,7 @@
             I will get back to you !
           </h2>
         </div>
-        <h1 class="contact-title"><span>Contact & Booking</span></h1>
+        <h1 class="title title--left-lined"><span>Contact & Booking</span></h1>
 
         <form v-if="!success" class="contact-form" @submit.prevent="submit">
           <div v-for="(error, key) in errors" :key="key">

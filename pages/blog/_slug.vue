@@ -1,7 +1,7 @@
 <template>
   <div class="blog-article">
     <nuxt-link to="/blog">Back</nuxt-link>
-    <h1 class="blog-article-title">
+    <h1 class="blog-article-title title title--left-lined">
       <span>{{ blogPost.title }}</span>
     </h1>
     <div class="blog-article-image">

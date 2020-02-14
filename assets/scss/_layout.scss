@@ -31,26 +31,33 @@ body {
 }
 
 .header {
+  margin-top: 20px;
+  margin-bottom: 20px;
   .header-nav {
-    margin-top: 20px;
+    &.header-nav--mobile {
+      display: none;
+    }
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    a {
-      font-size: 20px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-left: 20px;
-      margin-right: 20px;
-      &:first-child {
-        margin-left: 0;
-      }
-      &:last-child {
-        margin-right: 0;
-      }
-      &.nuxt-link-active {
-        color: #cfbbb4;
+    nav {
+      a {
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-left: 20px;
+        margin-right: 20px;
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+        &.nuxt-link-active {
+          color: #cfbbb4;
+        }
       }
     }
 
@@ -72,7 +79,6 @@ body {
   background-position: center;
   background-color: #f5e6df;
   background-size: cover;
-  margin-top: 20px;
   margin-bottom: 20px;
   transition: 1s ease background-image, 0.5s ease height, 0.5s ease opacity,
     0.5s ease background-color;
@@ -219,6 +225,55 @@ body {
       height: 3px;
       background: #395b5d;
       margin-top: -1.5px;
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .header {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    .header-nav {
+      &.header-nav--desktop {
+        display: none;
+      }
+      &.header-nav--mobile {
+        display: flex;
+        justify-content: space-between;
+        .header-nav-logo {
+          a {
+            img {
+              width: 200px;
+            }
+          }
+        }
+        .header-nav-button {
+          position: relative;
+          z-index: 1001;
+        }
+        .header-nav-mobile-menu {
+          display: none;
+          position: fixed;
+          background: white;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 1000;
+          flex-wrap: wrap;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          a {
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 20px;
+          }
+          &.header-nav-mobile-menu--visible {
+            display: flex;
+          }
+        }
+      }
     }
   }
 }

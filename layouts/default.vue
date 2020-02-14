@@ -2,10 +2,15 @@
   <div>
     <header class="header">
       <div class="container">
-        <div class="header-nav">
+        <div class="header-nav header-nav--desktop">
           <nav class="header-nav-left">
-            <nuxt-link to="/services">Services</nuxt-link>
-            <nuxt-link to="/portfolio">Portfolio</nuxt-link>
+            <nuxt-link
+              v-for="(menuItem, index) in leftMenuItems"
+              :to="menuItem.route"
+              :key="index"
+              @click.native="showMobileMenu = false"
+              >{{ menuItem.title }}</nuxt-link
+            >
           </nav>
           <div class="header-nav-logo">
             <nuxt-link to="/">
@@ -13,9 +18,42 @@
             </nuxt-link>
           </div>
           <nav class="header-nav-right">
-            <nuxt-link to="/blog">Blog</nuxt-link>
-            <nuxt-link to="/shop">Shop</nuxt-link>
-            <nuxt-link to="/contact">Contact</nuxt-link>
+            <nuxt-link
+              v-for="(menuItem, index) in rightMenuItems"
+              :to="menuItem.route"
+              :key="index"
+              @click.native="showMobileMenu = false"
+              >{{ menuItem.title }}</nuxt-link
+            >
+          </nav>
+        </div>
+
+        <div class="header-nav header-nav--mobile">
+          <div class="header-nav-logo">
+            <nuxt-link to="/">
+              <img src="~/assets/img/logo-large.png" />
+            </nuxt-link>
+          </div>
+          <a
+            href="#"
+            class="header-nav-button"
+            @click.prevent="toggleMobileMenu()"
+          >
+            <fa-layer class="fa-2x">
+              <fa :icon="showMobileMenu ? ['fas', 'times'] : ['fas', 'bars']"
+            /></fa-layer>
+          </a>
+          <nav
+            class="header-nav-mobile-menu"
+            :class="{ 'header-nav-mobile-menu--visible': showMobileMenu }"
+          >
+            <nuxt-link
+              v-for="(menuItem, index) in menuItems"
+              :to="menuItem.route"
+              :key="index"
+              @click.native="showMobileMenu = false"
+              >{{ menuItem.title }}</nuxt-link
+            >
           </nav>
         </div>
       </div>
@@ -84,7 +122,45 @@
 <script>
 import { mapState } from 'vuex'
 export default {
+  data() {
+    return {
+      showMobileMenu: false,
+      menuItems: [
+        {
+          title: 'Services',
+          route: { name: 'services' },
+          left: true
+        },
+        {
+          title: 'Portfolio',
+          route: { name: 'portfolio' },
+          left: true
+        },
+        {
+          title: 'Blog',
+          route: { name: 'blog' },
+          right: true
+        },
+        {
+          title: 'Shop',
+          route: { name: 'shop' },
+          right: true
+        },
+        {
+          title: 'Contact',
+          route: { name: 'contact' },
+          right: true
+        }
+      ]
+    }
+  },
   computed: {
+    leftMenuItems() {
+      return this.menuItems.filter((el) => el.left)
+    },
+    rightMenuItems() {
+      return this.menuItems.filter((el) => el.right)
+    },
     bannerShow() {
       return this.$store.state.banner.show
     },
@@ -97,6 +173,11 @@ export default {
     this.$store.dispatch('instagram/getImages', {
       limit: 9
     })
+  },
+  methods: {
+    toggleMobileMenu() {
+      this.showMobileMenu = !this.showMobileMenu
+    }
   }
 }
 </script>

@@ -10,7 +10,7 @@
     </nav>
     <div class="container">
       <div class="portfolio-content">
-        <nuxt-child></nuxt-child>
+        <nuxt-child :key="$route.name"></nuxt-child>
       </div>
     </div>
   </div>

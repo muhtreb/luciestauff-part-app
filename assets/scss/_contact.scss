@@ -15,12 +15,29 @@ body.page-contact {
       background: #faf2f0;
       width: 100%;
       padding: 10px;
+      color: #395b5d;
+      &::placeholder {
+        color: #395b5d;
+        text-transform: uppercase;
+        opacity: 1;
+      }
     }
 
     .form-group {
       margin-bottom: 15px;
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+
+    .contact-form-services {
+      background: #faf2f0;
+      padding: 10px;
+      color: #395b5d;
+      text-transform: uppercase;
+      input {
+        background-color: white;
+        width: 50px;
       }
     }
 

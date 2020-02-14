@@ -2,7 +2,7 @@
   <div class="shop-products">
     <div class="flex flex-wrap -mx-2">
       <div
-        class="lg:w-1/3 md:w-1/2 w-full px-2"
+        class="xl:w-1/3 lg:w-1/3 md:w-1/2 w-full px-2"
         v-for="product in products"
         :key="product.id"
       >

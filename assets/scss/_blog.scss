@@ -12,6 +12,8 @@ body.page-blog {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
+      flex-shrink: 0;
+      max-width: 300px;
       a {
         margin-bottom: 20px;
         text-transform: uppercase;
@@ -27,6 +29,7 @@ body.page-blog {
     }
     .blog-content {
       flex: 1;
+      width: 100%;
     }
   }
 }
@@ -52,6 +55,7 @@ body.page-blog-detail {
     .blog-article-content {
       color: #395b5d;
       font-size: 18px;
+      word-break: break-all;
       h3 {
         font-weight: bold;
         font-size: 24px;

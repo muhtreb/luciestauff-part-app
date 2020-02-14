@@ -1,13 +1,15 @@
 <template>
   <div class="blog-article">
-    <nuxt-link to="/blog">Back</nuxt-link>
     <h1 class="blog-article-title title title--left-lined">
       <span>{{ blogPost.title }}</span>
     </h1>
     <div class="blog-article-image">
       <img :src="blogPost.image" />
     </div>
-    <div class="blog-article-content"></div>
+    <div
+      class="blog-article-content"
+      v-html="toMarkdown(blogPost.content)"
+    ></div>
 
     <div class="blog-article-products" v-if="blogPost.products.length > 0">
       <div class="flex -mx-2">
@@ -24,6 +26,7 @@
 </template>
 
 <script>
+import marked from 'marked'
 import BlogProduct from '@/components/BlogProduct'
 
 export default {
@@ -50,6 +53,11 @@ export default {
   data() {
     return {
       slug: ''
+    }
+  },
+  methods: {
+    toMarkdown(value) {
+      return value ? marked(value) : ''
     }
   }
 }

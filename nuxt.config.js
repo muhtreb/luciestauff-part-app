@@ -45,7 +45,8 @@ export default {
   plugins: [
     { src: '~/plugins/masonry', ssr: false },
     { src: '~/plugins/carousel', ssr: false },
-    '~/plugins/api'
+    '~/plugins/api',
+    { src: '~/plugins/validation', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

@@ -76,7 +76,7 @@
             </h3>
             <div class="footer-instagram-pictures">
               <a
-                v-for="image in instagramImages"
+                v-for="image in images"
                 :key="`instagram-${image.id}`"
                 :href="image.url"
                 class="footer-instagram-picture"
@@ -120,18 +120,10 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  async asyncData({ store }) {
-    await store.dispatch('instagram/getImages', {
-      limit: 9
-    })
-    return {
-      instagramImages: store.instagram.images
-    }
-  },
   data() {
     return {
-      instagramImages: [],
       showMobileMenu: false,
       menuItems: [
         {
@@ -174,7 +166,8 @@ export default {
     },
     bannerTitle() {
       return this.$store.state.banner.title
-    }
+    },
+    ...mapState('instagram', ['images'])
   },
   methods: {
     toggleMobileMenu() {

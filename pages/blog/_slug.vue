@@ -4,7 +4,7 @@
       <span>{{ blogPost.title }}</span>
     </h1>
     <div class="blog-article-image">
-      <img :src="blogPost.image" />
+      <img :src="blogPost.imageUrl" />
     </div>
     <div
       class="blog-article-content"

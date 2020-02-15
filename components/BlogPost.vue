@@ -2,16 +2,20 @@
   <div class="blog-article-container">
     <div
       class="blog-article  cursor-pointer"
-      @click.prevent="goToArticle(blogPost)"
+      @click.prevent="goToBlogPost(blogPost)"
     >
       <h3 class="blog-article-category">
-        <span>{{ blogPost.categories[0].name }}</span>
+        <span>{{
+          blogPost.categories.length > 0
+            ? blogPost.categories[0].name
+            : 'No Category'
+        }}</span>
       </h3>
       <div class="blog-article-image-container">
         <div
           class="blog-article-image"
           :style="{
-            backgroundImage: 'url(' + getArticleImage(blogPost) + ')'
+            backgroundImage: 'url(' + getBlogPostImage(blogPost) + ')'
           }"
         ></div>
       </div>
@@ -55,14 +59,14 @@ export default {
     }
   },
   methods: {
-    getArticleImage(article) {
-      return article.image // require(`@/assets/img/blog/${article.image}`)
+    getBlogPostImage(blogPost) {
+      return blogPost.imageUrl // require(`@/assets/img/blog/${article.image}`)
     },
-    goToArticle(article) {
+    goToBlogPost(blogPost) {
       this.$router.push({
         name: 'blog-slug',
         params: {
-          slug: article.slug
+          slug: blogPost.slug
         }
       })
     }

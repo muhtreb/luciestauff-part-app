@@ -83,7 +83,11 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.API_BASE_URL
+    baseURL: process.env.API_BASE_URL,
+    credentials: true,
+    init(axios) {
+      axios.defaults.withCredentials = true
+    }
   },
   /*
    ** Build configuration

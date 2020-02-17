@@ -9,16 +9,22 @@
               class="about-nav-link"
               @click.prevent="showAbout(index)"
               :class="{ 'about-nav-link--active': aboutNav === index }"
-              v-for="(about, index) in servicesData.about"
+              v-for="(section, index) in servicesData.about.sections"
               :key="index"
-              >{{ about.title }}</a
+              >{{ section.title }}</a
             >
           </nav>
           <div class="about-content-wrapper">
             <h2 class="about-content-title">Services</h2>
             <div class="about-content">
-              <div v-for="(about, index) in servicesData.about" :key="index">
-                <div v-if="aboutNav === index" v-html="about.content"></div>
+              <div
+                v-for="(section, index) in servicesData.about.sections"
+                :key="index"
+              >
+                <div
+                  v-if="aboutNav === index"
+                  v-html="toMarkdown(section.content)"
+                ></div>
               </div>
             </div>
           </div>
@@ -52,6 +58,7 @@
 </template>
 
 <script>
+import marked from 'marked'
 import PortfolioSlider from '@/components/PortfolioSlider'
 
 export default {
@@ -86,6 +93,9 @@ export default {
     },
     getAboutPicture() {
       return require(`@/assets/img/21.jpg`)
+    },
+    toMarkdown(value) {
+      return value ? marked(value) : ''
     }
   }
 }

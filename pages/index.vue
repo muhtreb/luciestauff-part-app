@@ -11,16 +11,22 @@
             class="about-nav-link"
             @click.prevent="showAbout(index)"
             :class="{ 'about-nav-link--active': aboutNav === index }"
-            v-for="(about, index) in homepageData.about"
+            v-for="(section, index) in homepageData.about.sections"
             :key="index"
-            >{{ about.title }}</a
+            >{{ section.title }}</a
           >
         </nav>
         <div class="about-content-wrapper">
           <h2 class="about-content-title">About L'atelier</h2>
           <div class="about-content">
-            <div v-for="(about, index) in homepageData.about" :key="index">
-              <div v-if="aboutNav === index" v-html="about.content"></div>
+            <div
+              v-for="(section, index) in homepageData.about.sections"
+              :key="index"
+            >
+              <div
+                v-if="aboutNav === index"
+                v-html="toMarkdown(section.content)"
+              ></div>
             </div>
           </div>
           <div class="about-content-sign">
@@ -67,6 +73,7 @@
 </template>
 
 <script>
+import marked from 'marked'
 import BlogPost from '@/components/BlogPost'
 import PortfolioSlider from '@/components/PortfolioSlider'
 
@@ -105,6 +112,9 @@ export default {
   methods: {
     showAbout(nav) {
       this.aboutNav = nav
+    },
+    toMarkdown(value) {
+      return value ? marked(value) : ''
     }
   }
 }

@@ -202,14 +202,21 @@ export default {
         position: absolute;
         right: 0;
         top: 30px;
-        border-bottom-width: 200px;
+        border-bottom-width: 150px;
       }
 
       .blog-article-title {
         top: 60px;
+        font-size: 14px;
+        height: 56px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 74%;
+        display: block;
       }
       .blog-article-link {
-        top: 175px;
+        top: 120px;
       }
     }
   }

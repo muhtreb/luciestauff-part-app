@@ -20,6 +20,7 @@
               <div
                 v-for="(section, index) in servicesData.about.sections"
                 :key="index"
+                class="wysiwyg"
               >
                 <div
                   v-if="aboutNav === index"

@@ -5,7 +5,7 @@
     @click="goToProduct(product)"
   >
     <div class="product-image">
-      <img :src="product.imageUrl" />
+      <img :src="product.smallImageUrl" />
     </div>
     <div class="product-title">{{ product.title }}</div>
   </div>

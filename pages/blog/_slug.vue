@@ -7,7 +7,7 @@
       <img :src="blogPost.imageUrl" />
     </div>
     <div
-      class="blog-article-content"
+      class="blog-article-content wysiwyg"
       v-html="toMarkdown(blogPost.content)"
     ></div>
 

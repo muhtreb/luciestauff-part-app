@@ -10,12 +10,19 @@
     </nav>
     <div class="container">
       <div class="portfolio-content">
-        <nuxt-child :key="$route.name"></nuxt-child>
+        <nuxt-child :key="nuxtChildKey"></nuxt-child>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import md5 from 'blueimp-md5'
+export default {
+  computed: {
+    nuxtChildKey() {
+      return this.$route.name + '_' + md5(JSON.stringify(this.$route.params))
+    }
+  }
+}
 </script>

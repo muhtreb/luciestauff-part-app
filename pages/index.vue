@@ -93,13 +93,20 @@ export default {
       title: "L'atelier hair & make up"
     })
   },
-  async asyncData({ app, params, store }) {
-    await store.dispatch('blog/getBlogPosts', {
-      per_page: 1,
-      sort_by: ['created_at'],
-      sort_desc: [true]
-    })
-    await store.dispatch('data/getHomepageData')
+  async asyncData({ app, params, store, $payloadURL, $axios, route }) {
+    if (process.static && process.client && $payloadURL) {
+      return $axios.$get($payloadURL(route))
+    }
+
+    await Promise.all([
+      store.dispatch('blog/getBlogPosts', {
+        per_page: 1,
+        sort_by: ['created_at'],
+        sort_desc: [true]
+      }),
+      store.dispatch('data/getHomepageData')
+    ])
+
     return {
       blogPosts: store.state.blog.blogPosts,
       homepageData: store.state.data.homepage

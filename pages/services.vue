@@ -64,7 +64,11 @@ import PortfolioSlider from '@/components/PortfolioSlider'
 
 export default {
   components: { PortfolioSlider },
-  async asyncData({ app, params, store }) {
+  async asyncData({ app, params, store, $axios, $payloadURL, route }) {
+    if (process.static && process.client && $payloadURL) {
+      return $axios.$get($payloadURL(route))
+    }
+
     await store.dispatch('data/getServicesData')
     return {
       servicesData: store.state.data.services

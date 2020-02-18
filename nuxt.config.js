@@ -72,7 +72,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    'nuxt-purgecss'
+    'nuxt-purgecss',
+    'nuxt-payload-extractor'
   ],
 
   purgeCSS: {

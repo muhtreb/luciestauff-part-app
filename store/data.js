@@ -10,7 +10,6 @@ export const actions = {
   },
   async getServicesData({ commit }) {
     const response = await this.$dataRepository.getServicesData()
-    console.log(response)
     commit('setServicesData', response.data)
   }
 }

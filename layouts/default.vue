@@ -59,9 +59,20 @@
       </div>
     </header>
 
-    <div class="banner" :class="{ 'banner--hidden': !bannerShow }">
+    <div
+      class="banner"
+      :class="{ 'banner--hidden': !bannerShow }"
+      v-if="!bannerSlider"
+    >
       <h1 v-if="bannerTitle" class="banner-title" v-html="bannerTitle"></h1>
     </div>
+
+    <BannerSlider
+      class="banner-slider"
+      :class="{ 'banner-slider--hidden': !bannerShow }"
+      v-if="bannerSlider"
+      :title="bannerTitle"
+    ></BannerSlider>
 
     <div class="content-wrapper">
       <nuxt />
@@ -121,7 +132,10 @@
 
 <script>
 import { mapState } from 'vuex'
+
+import BannerSlider from '@/components/BannerSlider'
 export default {
+  components: { BannerSlider },
   data() {
     return {
       showMobileMenu: false,
@@ -166,6 +180,9 @@ export default {
     },
     bannerTitle() {
       return this.$store.state.banner.title
+    },
+    bannerSlider() {
+      return this.$store.state.banner.slider
     },
     ...mapState('instagram', ['images'])
   },

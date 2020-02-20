@@ -51,11 +51,9 @@
     </div>
 
     <div class="portfolio">
-      <div class="container">
-        <h2 class="title title--right-lined">
-          <span>Portfolio</span>
-        </h2>
-      </div>
+      <h2 class="title title--right-lined">
+        <span class="container"><span>Portfolio</span></span>
+      </h2>
 
       <PortfolioSlider></PortfolioSlider>
     </div>
@@ -90,7 +88,8 @@ export default {
   mounted() {
     this.$store.commit('banner/setBanner', {
       show: true,
-      title: "L'atelier hair & make up"
+      title: "L'atelier hair & make up",
+      slider: true
     })
   },
   async asyncData({ app, params, store, $payloadURL, $axios, route }) {

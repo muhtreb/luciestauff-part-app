@@ -75,7 +75,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 175px;
+  height: 300px;
   background-position: center;
   background-color: #f5e6df;
   background-size: cover;
@@ -95,11 +95,44 @@ body {
   }
 }
 
+.banner-slider {
+  position: relative;
+  transition: 1s ease background-image, 0.5s ease height, 0.5s ease opacity,
+    0.5s ease background-color;
+  background-color: #f5e6df;
+  height: 300px;
+  &.banner-slider--hidden {
+    height: 0 !important;
+    opacity: 0;
+  }
+
+  .banner-slider-title {
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    position: absolute;
+    display: flex;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+  .slick-slider {
+    height: 100%;
+  }
+}
+
 .footer {
-  padding: 100px 0;
+  padding: 40px;
   background-color: #f5e6df;
   .footer-contact {
-    padding: 10px;
+    padding: 0 0px 0px 40px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -134,7 +167,7 @@ body {
   }
 
   .footer-instagram {
-    padding: 10px;
+    padding: 0 40px 0px 0px;
     position: relative;
     display: flex;
     align-items: flex-start;
@@ -182,11 +215,16 @@ body {
     letter-spacing: 2px;
     position: relative;
     margin-bottom: 10px;
-    span {
-      background: white;
-      padding-right: 5px;
-      z-index: 100;
-      position: relative;
+    .container {
+      display: block;
+      span {
+        background: white;
+        padding-right: 10px;
+        padding-left: 10px;
+        margin-left: -10px;
+        z-index: 100;
+        position: relative;
+      }
     }
     &:after {
       z-index: 99;

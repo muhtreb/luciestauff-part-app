@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/free-regular-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
@@ -41,6 +42,7 @@
     "nuxt-purgecss": "^0.2.1",
     "prettier": "^1.19.1",
     "qs": "^6.9.1",
+    "tui-editor": "^1.4.10",
     "vee-validate": "^3.2.4",
     "vue-carousel": "^0.18.0",
     "vue-masonry": "^0.11.8",

@@ -20,6 +20,7 @@
         ></div>
       </div>
       <h2 class="blog-article-title">
+        <span class="black-bar"></span>
         <span>{{ blogPost.title }}</span>
       </h2>
 
@@ -157,22 +158,33 @@ export default {
       right: 20px;
       top: 118px;
       z-index: 100;
-      font-size: 28px;
+      font-size: 18px;
       text-transform: uppercase;
       letter-spacing: 2px;
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       color: black;
       margin-bottom: 20px;
-      padding: 20px;
-      background-color: #f7d4c4ad;
       max-width: 600px;
       transition: 0.5s ease color;
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: 10px;
+      .black-bar {
+        height: 2px;
+        margin-right: 10px;
+        background: black;
+        width: 100%;
+        flex-grow: 1;
+      }
+      span:not(.black-bar) {
+        flex-grow: 0;
+      }
     }
 
     &:hover {
       .blog-article-title {
-        color: #1d5353;
+        // color: #1d5353;
       }
       .blog-article-link {
         transform: rotate(74deg);

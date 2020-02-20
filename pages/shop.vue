@@ -1,15 +1,17 @@
 <template>
   <div>
-    <div class="container">
-      <div class="shop-container">
-        <nav class="shop-categories">
+    <div class="shop-container">
+      <nav class="shop-categories">
+        <div class="container">
           <nuxt-link
             :to="`/shop/category/${productCategory.slug}`"
             v-for="productCategory in productCategories"
             :key="productCategory.id"
             >{{ productCategory.name }}</nuxt-link
           >
-        </nav>
+        </div>
+      </nav>
+      <div class="container">
         <div class="shop-content">
           <nuxt-child :key="nuxtChildKey"></nuxt-child>
         </div>

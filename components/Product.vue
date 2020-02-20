@@ -4,9 +4,10 @@
     :key="product.id"
     @click="goToProduct(product)"
   >
-    <div class="product-image">
-      <img :src="product.imageUrl" />
-    </div>
+    <div
+      class="product-image"
+      :style="{ backgroundImage: 'url(' + getProductImage(product) + ')' }"
+    ></div>
     <div class="product-title">{{ product.title }}</div>
   </div>
 </template>
@@ -22,18 +23,26 @@ export default {
           slug: product.slug
         }
       })
+    },
+    getProductImage(product) {
+      return product.smallImageUrl // require(`@/assets/img/blog/${article.image}`)
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product {
   margin-bottom: 30px;
   .product-image {
-    img {
-      width: 100%;
-    }
+    background-size: cover;
+    background-position: center center;
+    height: 0;
+    padding-bottom: 100%;
+  }
+
+  .product-title {
+    margin-top: 5px;
   }
 }
 </style>

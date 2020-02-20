@@ -1,10 +1,12 @@
 <template>
   <client-only>
-    <slick ref="slick" :options="slickOptions">
-      <div v-for="(image, index) in images" :key="`carousel-${index}`">
-        <img :src="require(`@/assets/img/portfolio/${image.path}`)" />
-      </div>
-    </slick>
+    <div class="portfolio-slider">
+      <slick ref="slick" :options="slickOptions">
+        <div v-for="(image, index) in images" :key="`carousel-${index}`">
+          <img :src="require(`@/assets/img/portfolio/${image.path}`)" />
+        </div>
+      </slick>
+    </div>
   </client-only>
 </template>
 
@@ -20,7 +22,7 @@ export default {
         variableWidth: true,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         adaptiveHeight: true,
         appendArrows: false
       },
@@ -62,13 +64,15 @@ export default {
 </script>
 
 <style lang="scss">
-.slick-slider {
-  margin-bottom: 100px;
-  .slick-slide {
-    height: 500px;
-    margin-right: 20px;
-    img {
+.portfolio-slider {
+  .slick-slider {
+    margin-bottom: 100px;
+    .slick-slide {
       height: 500px;
+      margin-right: 20px;
+      img {
+        height: 500px;
+      }
     }
   }
 }

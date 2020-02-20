@@ -1,7 +1,8 @@
 export const state = () => ({
   show: false,
   title: false,
-  subtitle: false
+  subtitle: false,
+  slider: false
 })
 
 export const mutations = {
@@ -9,5 +10,6 @@ export const mutations = {
     state.show = data.show || false
     state.title = data.title || false
     state.subtitle = data.subtitle || false
+    state.slider = data.slider || false
   }
 }

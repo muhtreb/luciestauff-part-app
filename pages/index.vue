@@ -11,7 +11,7 @@
             class="about-nav-link"
             @click.prevent="showAbout(index)"
             :class="{ 'about-nav-link--active': aboutNav === index }"
-            v-for="(section, index) in homepageData.about.sections"
+            v-for="(section, index) in settings.homepage.about.sections"
             :key="index"
             >{{ section.title }}</a
           >
@@ -20,7 +20,7 @@
           <h2 class="about-content-title">About L'atelier</h2>
           <div class="about-content">
             <div
-              v-for="(section, index) in homepageData.about.sections"
+              v-for="(section, index) in settings.homepage.about.sections"
               :key="index"
               class="wysiwyg"
             >
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import marked from 'marked'
 import BlogPost from '@/components/BlogPost'
 import PortfolioSlider from '@/components/PortfolioSlider'
@@ -102,13 +103,11 @@ export default {
         per_page: 1,
         sort_by: ['created_at'],
         sort_desc: [true]
-      }),
-      store.dispatch('data/getHomepageData')
+      })
     ])
 
     return {
-      blogPosts: store.state.blog.blogPosts,
-      homepageData: store.state.data.homepage
+      blogPosts: store.state.blog.blogPosts
     }
   },
   data() {
@@ -123,6 +122,9 @@ export default {
     toMarkdown(value) {
       return value ? marked(value) : ''
     }
+  },
+  computed: {
+    ...mapState('setting', ['settings'])
   }
 }
 </script>

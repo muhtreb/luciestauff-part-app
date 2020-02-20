@@ -8,7 +8,7 @@
             class="about-nav-link"
             @click.prevent="showAbout(index)"
             :class="{ 'about-nav-link--active': aboutNav === index }"
-            v-for="(section, index) in servicesData.about.sections"
+            v-for="(section, index) in settings.services.about.sections"
             :key="index"
             >{{ section.title }}</a
           >
@@ -17,7 +17,7 @@
           <h2 class="about-content-title">Services</h2>
           <div class="about-content">
             <div
-              v-for="(section, index) in servicesData.about.sections"
+              v-for="(section, index) in settings.services.about.sections"
               :key="index"
               class="wysiwyg"
             >
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import marked from 'marked'
 import PortfolioSlider from '@/components/PortfolioSlider'
 import TestimonialSlider from '@/components/TestimonialSlider'
@@ -79,13 +80,9 @@ export default {
       return $axios.$get($payloadURL(route))
     }
 
-    await Promise.all([
-      store.dispatch('data/getServicesData'),
-      store.dispatch('testimonial/getTestimonials')
-    ])
+    await Promise.all([store.dispatch('testimonial/getTestimonials')])
 
     return {
-      servicesData: store.state.data.services,
       testimonials: store.state.testimonial.testimonials
     }
   },
@@ -117,6 +114,9 @@ export default {
     toMarkdown(value) {
       return value ? marked(value) : ''
     }
+  },
+  computed: {
+    ...mapState('setting', ['settings'])
   }
 }
 </script>

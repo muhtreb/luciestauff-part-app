@@ -62,7 +62,6 @@ body.page-homepage {
         height: 400px;
         width: 100%;
         overflow: auto;
-        padding-right: 50px;
         flex-grow: 1;
         line-height: 25px;
       }
@@ -120,9 +119,17 @@ body.page-homepage {
   }
 
   .blog {
+    .title {
+      margin-bottom: 50px;
+      margin-top: 70px;
+      font-size: 32px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-align: center;
+    }
     .blog-article-container {
       max-width: 900px;
-      margin: 150px auto 150px;
+      margin: 100px auto 150px;
     }
   }
 }

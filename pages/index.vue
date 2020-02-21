@@ -52,7 +52,7 @@
 
     <div class="portfolio">
       <h2 class="title title--right-lined">
-        <span class="container"><span>Portfolio</span></span>
+        <span>Portfolio</span>
       </h2>
 
       <PortfolioSlider></PortfolioSlider>
@@ -60,6 +60,7 @@
 
     <div class="blog">
       <div class="container">
+        <h2 class="title"><span>Blog</span></h2>
         <BlogPost
           v-for="blogPost in blogPosts"
           :key="blogPost.id"

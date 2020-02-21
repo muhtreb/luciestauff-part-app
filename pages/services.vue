@@ -47,7 +47,7 @@
     </div>
     <div class="portfolio">
       <h2 class="title title--right-lined">
-        <span class="container"><span>My Work</span></span>
+        <span>My Work</span>
       </h2>
 
       <PortfolioSlider></PortfolioSlider>

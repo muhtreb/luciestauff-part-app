@@ -113,7 +113,7 @@
             </div>
           </div>
           <div class="footer-contact w-full desktop:w-1/2 ">
-            <h2 class="footer-contact-title">L'atelier Hair & Make Up</h2>
+            <h2 class="footer-contact-title">L'atelier Hair & Make-Up</h2>
             <div class="footer-contact-details">
               Keep in touch<br />
               <a :href="`tel:${getPhoneNumber()}`">{{ getPhoneNumber() }}</a

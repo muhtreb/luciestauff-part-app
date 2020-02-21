@@ -2,10 +2,12 @@
   <div>
     <nav class="portfolio-nav">
       <div class="container">
-        <nuxt-link to="/portfolio/category1">Catégorie 1</nuxt-link>
-        <nuxt-link to="/portfolio/category2">Catégorie 2</nuxt-link>
-        <nuxt-link to="/portfolio/category3">Catégorie 3</nuxt-link>
-        <nuxt-link to="/portfolio/category4">Catégorie 4</nuxt-link>
+        <nuxt-link
+          :to="`/portfolio/category/${portfolioCategory.slug}`"
+          v-for="portfolioCategory in portfolioCategories"
+          :key="portfolioCategory.id"
+          >{{ portfolioCategory.name }}</nuxt-link
+        >
       </div>
     </nav>
     <div class="container">
@@ -22,6 +24,12 @@ export default {
   computed: {
     nuxtChildKey() {
       return this.$route.name + '_' + md5(JSON.stringify(this.$route.params))
+    }
+  },
+  async asyncData({ app, params, store }) {
+    await store.dispatch('portfolio/getPortfolioCategories')
+    return {
+      portfolioCategories: store.state.portfolio.portfolioCategories
     }
   }
 }

@@ -2,8 +2,13 @@
   <client-only>
     <div class="portfolio-slider">
       <slick ref="slick" :options="slickOptions">
-        <div v-for="(image, index) in images" :key="`carousel-${index}`">
+        <div
+          v-for="(image, index) in images"
+          :key="`carousel-${index}`"
+          @click="goToCategory()"
+        >
           <img :src="require(`@/assets/img/portfolio/${image.path}`)" />
+          <div class="slick-slide-information">Test</div>
         </div>
       </slick>
     </div>
@@ -16,7 +21,7 @@ export default {
     return {
       slickOptions: {
         infinite: true,
-        speed: 300,
+        speed: 800,
         slidesToShow: 3,
         centerMode: true,
         variableWidth: true,
@@ -59,6 +64,9 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    goToCategory(category) {}
   }
 }
 </script>
@@ -70,8 +78,34 @@ export default {
     .slick-slide {
       height: 500px;
       margin-right: 20px;
+      position: relative;
       img {
         height: 500px;
+      }
+
+      .slick-slide-information {
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        color: black;
+        letter-spacing: 2px;
+        font-size: 32px;
+        transition: 0.5s ease opacity;
+        cursor: pointer;
+      }
+
+      &:hover {
+        .slick-slide-information {
+          opacity: 1;
+        }
       }
     }
   }

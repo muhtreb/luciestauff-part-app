@@ -55,7 +55,36 @@ export default {
 
 <style lang="scss">
 .banner-slider {
+  position: relative;
+  transition: 1s ease background-image, 0.5s ease height, 0.5s ease opacity,
+    0.5s ease background-color;
+  background-color: #f5e6df;
+  height: 300px;
+  &.banner-slider--hidden {
+    height: 0 !important;
+    opacity: 0;
+  }
+
+  .banner-slider-title {
+    color: white;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    position: absolute;
+    display: flex;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
   .slick-slider {
+    height: 100%;
+
     margin-bottom: 100px;
     .slick-list {
       padding: 0 !important;
@@ -65,6 +94,19 @@ export default {
           height: 300px;
           background-position: center center;
           background-size: cover;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .banner-slider {
+    height: 150px;
+    .slick-slider {
+      .slick-list {
+        .slick-slide {
+          height: 150px;
         }
       }
     }

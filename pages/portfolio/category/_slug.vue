@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Portfolio :images="getImages"></Portfolio>
+    <Portfolio :portfolio-category="portfolioCategory"></Portfolio>
   </div>
 </template>
 
@@ -22,61 +22,17 @@ export default {
       title: 'Portfolio'
     })
   },
-  asyncData({ app, params, error, payload, store }) {
+  async asyncData({ app, params, error, payload, store }) {
+    const response = await app.$portfolioRepository.getPortfolioCategoryBySlug(
+      params.slug
+    )
     return {
-      slug: params.slug
+      portfolioCategory: response.data
     }
   },
   data() {
     return {
-      slug: '',
-      images: [
-        {
-          path: 'hair/1145.jpg',
-          categories: ['category1', 'category3']
-        },
-        {
-          path: 'hair/1146.jpg',
-          categories: ['category1', 'category4', 'category3']
-        },
-        {
-          path: 'hair/1148.jpg',
-          categories: ['category1', 'category3']
-        },
-        {
-          path: 'hair/1149.jpg',
-          categories: ['category1', 'category4']
-        },
-        {
-          path: 'hair/1154.jpg',
-          categories: ['category2', 'category4']
-        },
-        {
-          path: 'hair/1155.jpg',
-          categories: ['category2', 'category3']
-        },
-        {
-          path: 'hair/1335.jpg',
-          categories: ['category2', 'category4']
-        },
-        {
-          path: 'hair/1336.jpg',
-          categories: ['category2', 'category3']
-        },
-        {
-          path: 'hair/1339.jpg',
-          categories: ['category2', 'category4']
-        },
-        {
-          path: 'hair/1341.jpg',
-          categories: ['category2', 'category3', 'category4']
-        }
-      ]
-    }
-  },
-  computed: {
-    getImages() {
-      return this.images.filter((el) => el.categories.includes(this.slug))
+      slug: ''
     }
   }
 }

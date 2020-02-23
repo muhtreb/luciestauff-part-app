@@ -3,11 +3,11 @@
     <div class="portfolio-slider">
       <slick ref="slick" :options="slickOptions">
         <div
-          v-for="(image, index) in images"
-          :key="`carousel-${index}`"
+          v-for="image in portfolioCategory.images"
+          :key="`carousel-${image.id}`"
           @click="goToCategory()"
         >
-          <img :src="require(`@/assets/img/portfolio/${image.path}`)" />
+          <img :src="image.image_url" />
           <div class="slick-slide-information">Test</div>
         </div>
       </slick>
@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  props: ['portfolioCategory'],
   data() {
     return {
       slickOptions: {
@@ -30,39 +31,7 @@ export default {
         autoplaySpeed: 3000,
         adaptiveHeight: true,
         appendArrows: false
-      },
-      images: [
-        {
-          path: 'hair/1145.jpg'
-        },
-        {
-          path: 'hair/1146.jpg'
-        },
-        {
-          path: 'hair/1148.jpg'
-        },
-        {
-          path: 'hair/1149.jpg'
-        },
-        {
-          path: 'hair/1154.jpg'
-        },
-        {
-          path: 'hair/1155.jpg'
-        },
-        {
-          path: 'hair/1335.jpg'
-        },
-        {
-          path: 'hair/1336.jpg'
-        },
-        {
-          path: 'hair/1339.jpg'
-        },
-        {
-          path: 'hair/1341.jpg'
-        }
-      ]
+      }
     }
   },
   methods: {

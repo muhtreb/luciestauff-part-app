@@ -55,7 +55,9 @@
         <span>Portfolio</span>
       </h2>
 
-      <PortfolioSlider></PortfolioSlider>
+      <PortfolioSlider
+        :portfolio-category="sliderPortfolioCategory"
+      ></PortfolioSlider>
     </div>
 
     <div class="blog">
@@ -91,7 +93,8 @@ export default {
     this.$store.commit('banner/setBanner', {
       show: true,
       title: "L'atelier hair & make up",
-      slider: true
+      slider: true,
+      sliderImages: this.bannerPortfolioCategory.images
     })
   },
   async asyncData({ app, params, store, $payloadURL, $axios, route }) {
@@ -99,16 +102,20 @@ export default {
       return $axios.$get($payloadURL(route))
     }
 
-    await Promise.all([
+    const res = await Promise.all([
       store.dispatch('blog/getBlogPosts', {
         per_page: 1,
         sort_by: ['created_at'],
         sort_desc: [true]
-      })
+      }),
+      app.$portfolioRepository.getPortfolioCategoryBySlug('homepage-portfolio'),
+      app.$portfolioRepository.getPortfolioCategoryBySlug('homepage-banner')
     ])
 
     return {
-      blogPosts: store.state.blog.blogPosts
+      blogPosts: store.state.blog.blogPosts,
+      sliderPortfolioCategory: res[1].data,
+      bannerPortfolioCategory: res[2].data
     }
   },
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Portfolio :images="images"></Portfolio>
+    <Portfolio :portfolio-category="{ images: [] }"></Portfolio>
   </div>
 </template>
 
@@ -21,52 +21,11 @@ export default {
       show: true,
       title: 'Portfolio'
     })
-  },
-  data() {
-    return {
-      images: [
-        {
-          path: 'hair/1145.jpg',
-          categories: ['category1', 'category3']
-        },
-        {
-          path: 'hair/1146.jpg',
-          categories: ['category1', 'category4', 'category3']
-        },
-        {
-          path: 'hair/1148.jpg',
-          categories: ['category1', 'category3']
-        },
-        {
-          path: 'hair/1149.jpg',
-          categories: ['category1', 'category4']
-        },
-        {
-          path: 'hair/1154.jpg',
-          categories: ['category2', 'category4']
-        },
-        {
-          path: 'hair/1155.jpg',
-          categories: ['category2', 'category3']
-        },
-        {
-          path: 'hair/1335.jpg',
-          categories: ['category2', 'category4']
-        },
-        {
-          path: 'hair/1336.jpg',
-          categories: ['category2', 'category3']
-        },
-        {
-          path: 'hair/1339.jpg',
-          categories: ['category2', 'category4']
-        },
-        {
-          path: 'hair/1341.jpg',
-          categories: ['category2', 'category3', 'category4']
-        }
-      ]
-    }
+
+    this.$router.push({
+      name: 'portfolio-category-slug',
+      params: { slug: this.$store.state.portfolio.portfolioCategories[0].slug }
+    })
   }
 }
 </script>

@@ -50,7 +50,9 @@
         <span>My Work</span>
       </h2>
 
-      <PortfolioSlider></PortfolioSlider>
+      <PortfolioSlider
+        :portfolio-category="portfolioCategory"
+      ></PortfolioSlider>
     </div>
 
     <div class="testimonial">
@@ -80,10 +82,14 @@ export default {
       return $axios.$get($payloadURL(route))
     }
 
-    await Promise.all([store.dispatch('testimonial/getTestimonials')])
+    const res = await Promise.all([
+      store.dispatch('testimonial/getTestimonials'),
+      app.$portfolioRepository.getPortfolioCategoryBySlug('services-portfolio')
+    ])
 
     return {
-      testimonials: store.state.testimonial.testimonials
+      testimonials: store.state.testimonial.testimonials,
+      portfolioCategory: res[1].data
     }
   },
   data() {

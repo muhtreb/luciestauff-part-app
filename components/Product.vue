@@ -25,7 +25,7 @@ export default {
       })
     },
     getProductImage(product) {
-      return product.smallImageUrl // require(`@/assets/img/blog/${article.image}`)
+      return product.small_image_url // require(`@/assets/img/blog/${article.image}`)
     }
   }
 }

@@ -87,6 +87,7 @@
       :class="{ 'banner-slider--hidden': !bannerShow }"
       v-if="bannerSlider"
       :title="bannerTitle"
+      :images="bannerSliderImages"
     ></BannerSlider>
 
     <div class="content-wrapper">
@@ -199,6 +200,9 @@ export default {
     },
     bannerSlider() {
       return this.$store.state.banner.slider
+    },
+    bannerSliderImages() {
+      return this.$store.state.banner.sliderImages
     },
     ...mapState('instagram', ['images']),
     ...mapState('setting', ['settings'])

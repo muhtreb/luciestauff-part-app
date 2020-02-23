@@ -2,7 +2,8 @@ export const state = () => ({
   show: false,
   title: false,
   subtitle: false,
-  slider: false
+  slider: false,
+  sliderImages: []
 })
 
 export const mutations = {
@@ -11,5 +12,6 @@ export const mutations = {
     state.title = data.title || false
     state.subtitle = data.subtitle || false
     state.slider = data.slider || false
+    state.sliderImages = data.sliderImages || []
   }
 }

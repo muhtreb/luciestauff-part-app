@@ -4,11 +4,11 @@
     <client-only>
       <slick ref="slick" :options="slickOptions">
         <div
-          v-for="(image, index) in images"
-          :key="`carousel-banner-${index}`"
+          v-for="image in images"
+          :key="`carousel-banner-${image.id}`"
           class="slide-image"
           :style="{
-            backgroundImage: 'url(' + getSlideImage(image) + ')'
+            backgroundImage: `url(${image.image_url})`
           }"
         ></div>
       </slick>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: ['title'],
+  props: ['title', 'images'],
   data() {
     return {
       slickOptions: {
@@ -31,23 +31,7 @@ export default {
         autoplay: true,
         autoplaySpeed: 5000,
         appendArrows: false
-      },
-      images: [
-        {
-          path: 'banner-home.jpg'
-        },
-        {
-          path: 'banner-home-services.jpg'
-        },
-        {
-          path: 'banner-services.jpg'
-        }
-      ]
-    }
-  },
-  methods: {
-    getSlideImage(image) {
-      return require(`@/assets/img/${image.path}`)
+      }
     }
   }
 }

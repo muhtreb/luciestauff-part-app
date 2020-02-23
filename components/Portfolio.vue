@@ -7,10 +7,10 @@
     >
       <div
         class="portfolio-masonry-item"
-        v-for="(image, id) in images"
-        :key="`image-${id}`"
+        v-for="image in portfolioCategory.images"
+        :key="`image-${image.id}`"
       >
-        <img :src="require(`@/assets/img/portfolio/${image.path}`)" />
+        <img :src="image.image_url" />
       </div>
     </masonry>
   </client-only>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: ['images'],
+  props: ['portfolioCategory'],
   mounted() {
     if (typeof this.$redrawVueMasonry === 'function') {
       this.$redrawVueMasonry()

@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     getBlogPostImage(blogPost) {
-      return blogPost.imageUrl // require(`@/assets/img/blog/${article.image}`)
+      return blogPost.image_url // require(`@/assets/img/blog/${article.image}`)
     },
     goToBlogPost(blogPost) {
       this.$router.push({

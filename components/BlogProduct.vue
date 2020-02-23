@@ -17,7 +17,7 @@ export default {
   props: ['product'],
   methods: {
     getProductImage(product) {
-      return product.smallImageUrl // require(`@/assets/img/blog/${article.image}`)
+      return product.small_image_url // require(`@/assets/img/blog/${article.image}`)
     },
     goToProduct(product) {
       window.open(product.url)

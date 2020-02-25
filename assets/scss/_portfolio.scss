@@ -9,15 +9,19 @@ body.page-portfolio {
     padding-bottom: 10px;
     margin-bottom: 40px;
     border-bottom: 3px solid black;
-    a {
-      text-transform: uppercase;
-      margin-right: 30px;
-      font-size: 18px;
-      &:last-child {
-        margin-right: 0;
-      }
-      &.nuxt-link-active {
-        color: #e3c4d3;
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      a {
+        text-transform: uppercase;
+        margin-right: 30px;
+        font-size: 18px;
+        &:last-child {
+          margin-right: 0;
+        }
+        &.nuxt-link-active {
+          color: #e3c4d3;
+        }
       }
     }
   }

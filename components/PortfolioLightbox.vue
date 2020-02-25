@@ -15,6 +15,9 @@
           <img src="~/assets/img/triangle-small.png" />
         </div>
       </template>
+      <template v-slot:close>
+        <div class="cool-lightbox-close"></div>
+      </template>
     </CoolLightBox>
   </client-only>
 </template>

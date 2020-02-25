@@ -94,14 +94,10 @@ export default {
       show: true,
       title: "L'atelier hair & make up",
       slider: true,
-      sliderImages: this.bannerPortfolioCategory.images
+      sliderMedias: this.bannerPortfolioCategory.medias
     })
   },
-  async asyncData({ app, params, store, $payloadURL, $axios, route }) {
-    if (process.static && process.client && $payloadURL) {
-      return $axios.$get($payloadURL(route))
-    }
-
+  async asyncData({ app, params, store }) {
     const res = await Promise.all([
       store.dispatch('blog/getBlogPosts', {
         per_page: 1,

@@ -77,11 +77,7 @@ import TestimonialSlider from '@/components/TestimonialSlider'
 
 export default {
   components: { PortfolioSlider, TestimonialSlider },
-  async asyncData({ app, params, store, $axios, $payloadURL, route }) {
-    if (process.static && process.client && $payloadURL) {
-      return $axios.$get($payloadURL(route))
-    }
-
+  async asyncData({ app, params, store }) {
     const res = await Promise.all([
       store.dispatch('testimonial/getTestimonials'),
       app.$portfolioRepository.getPortfolioCategoryBySlug('services-portfolio')

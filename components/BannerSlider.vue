@@ -4,11 +4,11 @@
     <client-only>
       <slick ref="slick" :options="slickOptions">
         <div
-          v-for="image in images"
-          :key="`carousel-banner-${image.id}`"
+          v-for="media in medias"
+          :key="`carousel-banner-${media.id}`"
           class="slide-image"
           :style="{
-            backgroundImage: `url(${image.image_url})`
+            backgroundImage: `url(${media.image_url})`
           }"
         ></div>
       </slick>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: ['title', 'images'],
+  props: ['title', 'medias'],
   data() {
     return {
       slickOptions: {

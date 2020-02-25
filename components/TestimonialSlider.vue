@@ -8,15 +8,7 @@
         >
           <div class="slide-testimonial">
             <div class="slide-testimonial-stars">
-              <div
-                v-for="index in new Array(5)"
-                :key="`star-${index}`"
-                class="slide-testimonial-star"
-              >
-                <fa-layer class="fa-3x">
-                  <fa :icon="['far', 'star']"
-                /></fa-layer>
-              </div>
+              <img src="~/assets/img/stars.svg" />
             </div>
             <div class="slide-testimonial-content">
               <span class="quote quote--left">“</span>{{ testimonial.content
@@ -98,7 +90,7 @@ export default {
         align-items: center;
         justify-content: center;
         .slide-testimonial {
-          max-width: 600px;
+          max-width: 900px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -106,19 +98,18 @@ export default {
           .slide-testimonial-stars {
             display: flex;
             color: #d2d09d;
-            .slide-testimonial-star {
-              margin-right: 10px;
-              &:last-child {
-                margin-right: 0;
-              }
+            img {
+              height: 73px;
             }
           }
           .slide-testimonial-content {
             margin-top: 40px;
-            font-size: 28px;
+            font-size: 24px;
             text-transform: uppercase;
             letter-spacing: 4px;
             text-align: center;
+            font-weight: lighter;
+            line-height: 35px;
           }
 
           .slide-testimonial-name {

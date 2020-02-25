@@ -19,13 +19,14 @@ export default {
   mounted() {
     this.$store.commit('banner/setBanner', {
       show: true,
-      title: 'Portfolio'
+      title: 'Portfolio test'
     })
   },
   async asyncData({ app, params, error, payload, store }) {
     const response = await app.$portfolioRepository.getPortfolioCategoryBySlug(
       params.slug
     )
+
     return {
       portfolioCategory: response.data
     }

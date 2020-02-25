@@ -1,14 +1,33 @@
 <template>
   <client-only>
     <div class="portfolio-slider">
-      <slick ref="slick" :options="slickOptions">
+      <slick
+        :ref="`slick`"
+        :key="`slick-${portfolioCategory.id}`"
+        :options="slickOptions"
+        @init="handleInit"
+      >
         <div
-          v-for="image in portfolioCategory.images"
-          :key="`carousel-${image.id}`"
-          @click="goToCategory()"
+          v-for="media in portfolioCategory.medias"
+          :key="`carousel-${media.id}`"
+          class="portfolio-media"
         >
-          <img :src="image.image_url" />
-          <div class="slick-slide-information">Test</div>
+          <img v-if="media.type === 'image'" :src="media.image_url" />
+          <video
+            muted="muted"
+            loop
+            v-else
+            :ref="`video-${media.id}`"
+            :poster="media.thumbnail_url"
+            @mouseover="playVideo(media)"
+            @mouseleave="pauseVideo(media)"
+          >
+            <source :src="media.video_url" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div class="portfolio-media-icon" v-if="media.type === 'video'">
+            <fa-layer class="fa-2x"> <fa :icon="['fas', 'video']"/></fa-layer>
+          </div>
         </div>
       </slick>
     </div>
@@ -20,8 +39,8 @@ export default {
   props: ['portfolioCategory'],
   data() {
     return {
+      init: false,
       slickOptions: {
-        infinite: true,
         speed: 800,
         slidesToShow: 3,
         centerMode: true,
@@ -35,7 +54,17 @@ export default {
     }
   },
   methods: {
-    goToCategory(category) {}
+    handleInit(event, slick) {
+      setTimeout(() => {
+        this.$refs.slick.next()
+      }, 200)
+    },
+    playVideo(media) {
+      this.$refs[`video-${media.id}`][0].play()
+    },
+    pauseVideo(media) {
+      this.$refs[`video-${media.id}`][0].pause()
+    }
   }
 }
 </script>
@@ -48,7 +77,8 @@ export default {
       height: 500px;
       margin-right: 20px;
       position: relative;
-      img {
+      img,
+      video {
         height: 500px;
       }
 
@@ -74,6 +104,17 @@ export default {
       &:hover {
         .slick-slide-information {
           opacity: 1;
+        }
+      }
+
+      .portfolio-media {
+        position: relative;
+        .portfolio-media-icon {
+          position: absolute;
+          top: 3px;
+          right: 10px;
+          color: white;
+          opacity: 0.8;
         }
       }
     }

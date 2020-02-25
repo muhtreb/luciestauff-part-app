@@ -1,4 +1,5 @@
 const env = require('dotenv').config()
+import axios from 'axios'
 
 export default {
   mode: 'universal',
@@ -60,7 +61,7 @@ export default {
       {
         component: 'fa',
         icons: {
-          solid: ['faBars', 'faTimes'],
+          solid: ['faBars', 'faTimes', 'faVideo'],
           regular: ['faStar'],
           brands: ['faTwitter', 'faFacebookF', 'faInstagram', 'faPinterestP']
         }
@@ -73,8 +74,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    'nuxt-purgecss',
-    'nuxt-payload-extractor'
+    'nuxt-purgecss'
   ],
 
   purgeCSS: {
@@ -111,6 +111,59 @@ export default {
           }
         }
       }
+    }
+  },
+
+  generate: {
+    routes: async () => {
+      const client = axios.create({
+        baseURL: process.env.API_BASE_URL
+      })
+      const routes = []
+
+      const [
+        responsePortfolioCategories,
+        responseBlogCategories,
+        responseShopCategories,
+        responseBlogPosts
+      ] = await Promise.all([
+        client.get(`/portfolio/categories`),
+        client.get(`/blog/categories`),
+        client.get(`/product/categories`),
+        client.get(`/blog/posts`)
+      ])
+
+      const portfolioCategoriesRoutes = responsePortfolioCategories.data.data.map(
+        (portfolioCategory) => {
+          return {
+            route: '/portfolio/category/' + portfolioCategory.slug,
+            payload: portfolioCategory
+          }
+        }
+      )
+
+      const blogCategoriesRoutes = responseBlogCategories.data.data.map(
+        (blogCategory) => {
+          return '/blog/category/' + blogCategory.slug
+        }
+      )
+
+      const shopCategoriesRoutes = responseShopCategories.data.data.map(
+        (shopCategory) => {
+          return '/shop/category/' + shopCategory.slug
+        }
+      )
+
+      const blogPostsRoutes = responseBlogPosts.data.data.map((blogPost) => {
+        return '/blog/' + blogPost.slug
+      })
+
+      return [
+        ...portfolioCategoriesRoutes,
+        ...blogCategoriesRoutes,
+        ...shopCategoriesRoutes,
+        ...blogPostsRoutes
+      ]
     }
   }
 }

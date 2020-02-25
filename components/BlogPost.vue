@@ -157,7 +157,7 @@ export default {
       position: absolute;
       right: 20px;
       top: 118px;
-      z-index: 100;
+      z-index: 10;
       font-size: 18px;
       text-transform: uppercase;
       letter-spacing: 2px;

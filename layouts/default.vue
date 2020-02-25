@@ -74,6 +74,8 @@
       </div>
     </header>
 
+    <div class="header-separator"></div>
+
     <div
       class="banner"
       :class="{ 'banner--hidden': !bannerShow }"

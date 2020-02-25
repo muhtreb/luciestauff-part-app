@@ -31,8 +31,13 @@ body {
 }
 
 .header {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: white;
+  padding: 20px 0;
+  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.1);
   > .container {
     position: relative;
   }
@@ -88,6 +93,10 @@ body {
     z-index: 110;
     border-radius: 0px;
   }
+}
+
+.header-separator {
+  margin-top: 120px;
 }
 
 .banner {
@@ -208,7 +217,7 @@ body {
       background: white;
       padding-right: 10px;
       padding-left: 10px;
-      z-index: 100;
+      z-index: 10;
       position: relative;
     }
 
@@ -219,7 +228,7 @@ body {
     }
 
     &:after {
-      z-index: 99;
+      z-index: 9;
       content: '';
       position: absolute;
       left: 0;
@@ -242,11 +251,11 @@ body {
     span {
       background: white;
       padding-left: 10px;
-      z-index: 100;
+      z-index: 10;
       position: relative;
     }
     &:after {
-      z-index: 99;
+      z-index: 9;
       content: '';
       position: absolute;
       left: 0;
@@ -259,14 +268,32 @@ body {
   }
 }
 
+.cool-lightbox {
+  background: rgba(255, 255, 255, 0.9) !important;
+
+  .cool-lightbox-toolbar {
+    display: none !important;
+  }
+
+  .cool-lightbox-button--next {
+    right: 30px !important;
+  }
+
+  .cool-lightbox-button--prev {
+    left: 30px !important;
+    img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 @media screen and (max-width: 1279px) {
   .banner {
     height: 150px;
   }
 
   .header {
-    margin-bottom: 10px;
-    margin-top: 10px;
+    padding: 5px 0;
     .header-social-links {
       display: none;
     }
@@ -312,5 +339,9 @@ body {
         }
       }
     }
+  }
+
+  .header-separator {
+    margin-top: 90px;
   }
 }

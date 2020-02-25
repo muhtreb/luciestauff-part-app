@@ -1,14 +1,9 @@
 <template>
-  <div>
-    <Portfolio :portfolio-category="{ images: [] }"></Portfolio>
-  </div>
+  <div></div>
 </template>
 
 <script>
-import Portfolio from '@/components/Portfolio'
-
 export default {
-  components: { Portfolio },
   head() {
     return {
       bodyAttrs: {

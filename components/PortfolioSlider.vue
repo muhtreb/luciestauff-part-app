@@ -1,45 +1,55 @@
 <template>
   <client-only>
-    <div class="portfolio-slider">
-      <slick
-        :ref="`slick`"
-        :key="`slick-${portfolioCategory.id}`"
-        :options="slickOptions"
-        @init="handleInit"
-      >
-        <div
-          v-for="media in portfolioCategory.medias"
-          :key="`carousel-${media.id}`"
-          class="portfolio-media"
+    <div>
+      <PortfolioLightbox
+        :portfolio-category="portfolioCategory"
+        :index="lightboxIndex"
+      ></PortfolioLightbox>
+      <div class="portfolio-slider">
+        <slick
+          :ref="`slick`"
+          :key="`slick-${portfolioCategory.id}`"
+          :options="slickOptions"
+          @init="handleInit"
         >
-          <img v-if="media.type === 'image'" :src="media.image_url" />
-          <video
-            muted="muted"
-            loop
-            v-else
-            :ref="`video-${media.id}`"
-            :poster="media.thumbnail_url"
-            @mouseover="playVideo(media)"
-            @mouseleave="pauseVideo(media)"
+          <div
+            v-for="(media, index) in portfolioCategory.medias"
+            :key="`carousel-${media.id}`"
+            class="portfolio-media"
+            @click="lightboxIndex = index"
           >
-            <source :src="media.video_url" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div class="portfolio-media-icon" v-if="media.type === 'video'">
-            <fa-layer class="fa-2x"> <fa :icon="['fas', 'video']"/></fa-layer>
+            <img v-if="media.type === 'image'" :src="media.image_url" />
+            <video
+              muted="muted"
+              loop
+              v-else
+              :ref="`video-${media.id}`"
+              :poster="media.thumbnail_url"
+              @mouseover="playVideo(media)"
+              @mouseleave="pauseVideo(media)"
+            >
+              <source :src="media.video_url" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="portfolio-media-icon" v-if="media.type === 'video'">
+              <fa-layer class="fa-2x"> <fa :icon="['fas', 'video']"/></fa-layer>
+            </div>
           </div>
-        </div>
-      </slick>
+        </slick>
+      </div>
     </div>
   </client-only>
 </template>
 
 <script>
+import PortfolioLightbox from '@/components/PortfolioLightbox'
 export default {
+  components: { PortfolioLightbox },
   props: ['portfolioCategory'],
   data() {
     return {
       init: false,
+      lightboxIndex: null,
       slickOptions: {
         speed: 800,
         slidesToShow: 3,
@@ -109,6 +119,7 @@ export default {
 
       .portfolio-media {
         position: relative;
+        cursor: pointer;
         .portfolio-media-icon {
           position: absolute;
           top: 3px;

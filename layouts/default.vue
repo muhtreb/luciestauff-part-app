@@ -82,6 +82,11 @@
       v-if="!bannerSlider"
     >
       <h1 v-if="bannerTitle" class="banner-title" v-html="bannerTitle"></h1>
+      <h2
+        v-if="bannerSubtitle"
+        class="banner-subtitle"
+        v-html="bannerSubtitle"
+      ></h2>
     </div>
 
     <BannerSlider
@@ -199,6 +204,9 @@ export default {
     },
     bannerTitle() {
       return this.$store.state.banner.title
+    },
+    bannerSubtitle() {
+      return this.$store.state.banner.subtitle
     },
     bannerSlider() {
       return this.$store.state.banner.slider

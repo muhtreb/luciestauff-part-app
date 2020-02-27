@@ -11,5 +11,9 @@ export default ($axios) => () => ({
 
   getBlogPostCategories() {
     return $axios.$get(`/blog/categories`)
+  },
+
+  getBlogPostCategoryBySlug(slug) {
+    return $axios.$get(`/blog/categories/${slug}`)
   }
 })

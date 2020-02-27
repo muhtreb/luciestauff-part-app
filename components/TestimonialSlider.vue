@@ -123,4 +123,20 @@ export default {
     }
   }
 }
+
+@screen sm {
+  .testimonial-slider {
+    .slick-slider {
+      .slick-list {
+        .slick-slide {
+          .slide-testimonial {
+            .slide-testimonial-content {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>

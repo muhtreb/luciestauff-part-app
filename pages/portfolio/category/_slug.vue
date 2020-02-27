@@ -19,7 +19,8 @@ export default {
   mounted() {
     this.$store.commit('banner/setBanner', {
       show: true,
-      title: 'Portfolio test'
+      title: 'Portfolio',
+      subtitle: this.portfolioCategory.name
     })
   },
   async asyncData({ app, params, error, payload, store }) {

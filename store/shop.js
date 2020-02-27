@@ -1,6 +1,7 @@
 export const state = () => ({
   products: [],
-  productCategories: []
+  productCategories: [],
+  productCategory: null
 })
 
 export const actions = {
@@ -12,6 +13,11 @@ export const actions = {
   async getProductCategories({ context, commit }, params) {
     const response = await this.$shopRepository.getProductCategories()
     commit('setProductCategories', response.data)
+  },
+
+  async getProductCategoryBySlug({ context, commit }, slug) {
+    const response = await this.$shopRepository.getProductCategoryBySlug(slug)
+    commit('setProductCategory', response.data)
   }
 }
 
@@ -22,5 +28,9 @@ export const mutations = {
 
   setProductCategories(state, productCategories) {
     state.productCategories = productCategories
+  },
+
+  setProductCategory(state, productCategory) {
+    state.productCategory = productCategory
   }
 }

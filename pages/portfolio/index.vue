@@ -14,7 +14,7 @@ export default {
   mounted() {
     this.$store.commit('banner/setBanner', {
       show: true,
-      title: 'Portfolio home'
+      title: 'Portfolio'
     })
 
     this.$router.push({

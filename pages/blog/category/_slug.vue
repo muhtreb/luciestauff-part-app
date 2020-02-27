@@ -15,22 +15,27 @@ export default {
     }
   },
   async asyncData({ app, params, store }) {
-    await store.dispatch('blog/getBlogPosts', {
-      per_page: 3,
-      sort_by: ['created_at'],
-      sort_desc: [true],
-      filters: {
-        categories: [params.slug]
-      }
-    })
+    await Promise.all([
+      store.dispatch('blog/getBlogPosts', {
+        per_page: 3,
+        sort_by: ['created_at'],
+        sort_desc: [true],
+        filters: {
+          categories: [params.slug]
+        }
+      }),
+      store.dispatch('blog/getBlogPostCategoryBySlug', params.slug)
+    ])
     return {
-      blogPosts: store.state.blog.blogPosts
+      blogPosts: store.state.blog.blogPosts,
+      blogPostCategory: store.state.blog.blogPostCategory
     }
   },
   mounted() {
     this.$store.commit('banner/setBanner', {
       show: true,
-      title: "Le Blog<br/>L'atelier Hair & Make Up"
+      title: 'Le Blog',
+      subtitle: this.blogPostCategory.name
     })
   }
 }

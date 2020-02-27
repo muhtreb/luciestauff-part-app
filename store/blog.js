@@ -1,6 +1,7 @@
 export const state = () => ({
   blogPosts: [],
-  blogPostCategories: []
+  blogPostCategories: [],
+  blogPostCategory: null
 })
 
 export const actions = {
@@ -12,6 +13,11 @@ export const actions = {
   async getBlogPostCategories({ context, commit }, params) {
     const response = await this.$blogRepository.getBlogPostCategories()
     commit('setBlogPostCategories', response.data)
+  },
+
+  async getBlogPostCategoryBySlug({ context, commit }, slug) {
+    const response = await this.$blogRepository.getBlogPostCategoryBySlug(slug)
+    commit('setBlogPostCategory', response.data)
   }
 }
 
@@ -22,5 +28,9 @@ export const mutations = {
 
   setBlogPostCategories(state, blogPostCategories) {
     state.blogPostCategories = blogPostCategories
+  },
+
+  setBlogPostCategory(state, blogPostCategory) {
+    state.blogPostCategory = blogPostCategory
   }
 }

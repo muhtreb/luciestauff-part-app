@@ -14,19 +14,24 @@ export default {
     }
   },
   async asyncData({ app, params, store }) {
-    await store.dispatch('shop/getProducts', {
-      filters: {
-        categories: [params.slug]
-      }
-    })
+    await Promise.all([
+      store.dispatch('shop/getProducts', {
+        filters: {
+          categories: [params.slug]
+        }
+      }),
+      store.dispatch('shop/getProductCategoryBySlug', params.slug)
+    ])
     return {
-      products: store.state.shop.products
+      products: store.state.shop.products,
+      productCategory: store.state.shop.productCategory
     }
   },
   mounted() {
     this.$store.commit('banner/setBanner', {
       show: true,
-      title: 'Shop'
+      title: 'Shop',
+      subtitle: this.productCategory.name
     })
   }
 }

@@ -110,6 +110,8 @@ body {
   margin-bottom: 20px;
   transition: 1s ease background-image, 0.5s ease height, 0.5s ease opacity,
     0.5s ease background-color;
+  display: flex;
+  flex-direction: column;
   &.banner--hidden {
     height: 0 !important;
     opacity: 0;
@@ -120,6 +122,11 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     text-align: center;
+  }
+
+  .banner-subtitle {
+    color: white;
+    text-transform: uppercase;
   }
 }
 

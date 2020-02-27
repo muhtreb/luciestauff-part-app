@@ -9,7 +9,11 @@ export default ($axios) => () => ({
     return $axios.$get(`/products/${slug}`)
   },
 
+  getProductCategoryBySlug(slug) {
+    return $axios.$get(`/products/categories/${slug}`)
+  },
+
   getProductCategories() {
-    return $axios.$get(`/product/categories`)
+    return $axios.$get(`/products/categories`)
   }
 })

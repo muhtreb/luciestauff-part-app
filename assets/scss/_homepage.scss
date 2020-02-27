@@ -170,7 +170,21 @@ body.page-homepage {
 
       .about-content-wrapper {
         max-width: initial;
+
+        .about-content-sign {
+          right: -14px;
+        }
       }
+    }
+  }
+
+  .footer {
+    padding: 0;
+    .footer-contact {
+      padding-left: 0;
+    }
+    .footer-instagram {
+      padding-right: 0;
     }
   }
 }

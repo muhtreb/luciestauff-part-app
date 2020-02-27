@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="flex justify-center">
-      <div class="w-full xl:w-5/6">
+      <div class="w-full">
         <div class="banner banner--contact">
           <h2 class="banner-title">
             Let's connect,<br />

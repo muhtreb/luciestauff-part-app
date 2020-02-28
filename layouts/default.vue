@@ -76,7 +76,7 @@
 
     <div class="header-separator"></div>
 
-    <div
+    <!-- <div
       class="banner"
       :class="{ 'banner--hidden': !bannerShow }"
       v-if="!bannerSlider"
@@ -87,14 +87,15 @@
         class="banner-subtitle"
         v-html="bannerSubtitle"
       ></h2>
-    </div>
+    </div> -->
 
     <BannerSlider
       class="banner-slider"
       :class="{ 'banner-slider--hidden': !bannerShow }"
-      v-if="bannerSlider"
       :title="bannerTitle"
+      :subtitle="bannerSubtitle"
       :medias="bannerSliderMedias"
+      :key="`banner-slider-${$route.name}`"
     ></BannerSlider>
 
     <div class="content-wrapper">

@@ -19,15 +19,17 @@ export default {
       sort_by: ['created_at'],
       sort_desc: [true]
     })
+
     return {
       blogPosts: store.state.blog.blogPosts
     }
   },
   mounted() {
-    this.$store.commit('banner/setBanner', {
-      show: true,
-      title: "Le Blog<br/>L'atelier Hair & Make Up"
-    })
+    this.$store.commit(
+      'banner/setBannerTitle',
+      "Le Blog<br/>L'atelier Hair & Make Up"
+    )
+    this.$store.commit('banner/setBannerSubtitle', false)
   }
 }
 </script>

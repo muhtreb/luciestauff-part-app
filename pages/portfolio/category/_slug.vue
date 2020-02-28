@@ -17,19 +17,16 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('banner/setBanner', {
-      show: true,
-      title: 'Portfolio',
-      subtitle: this.portfolioCategory.name
-    })
+    this.$store.commit('banner/setBannerTitle', 'Portfolio')
+    this.$store.commit('banner/setBannerSubtitle', this.portfolioCategory.name)
   },
   async asyncData({ app, params, error, payload, store }) {
-    const response = await app.$portfolioRepository.getPortfolioCategoryBySlug(
+    const res = await app.$portfolioRepository.getPortfolioCategoryBySlug(
       params.slug
     )
 
     return {
-      portfolioCategory: response.data
+      portfolioCategory: res.data
     }
   },
   data() {

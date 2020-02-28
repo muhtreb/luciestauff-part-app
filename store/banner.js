@@ -13,5 +13,16 @@ export const mutations = {
     state.subtitle = data.subtitle || false
     state.slider = data.slider || false
     state.sliderMedias = data.sliderMedias || []
+  },
+  setBannerSlider(state, data) {
+    state.show = data.show || false
+    state.slider = data.slider || false
+    state.sliderMedias = data.sliderMedias || []
+  },
+  setBannerTitle(state, title) {
+    state.title = title
+  },
+  setBannerSubtitle(state, subtitle) {
+    state.subtitle = subtitle
   }
 }

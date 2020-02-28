@@ -21,10 +21,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('banner/setBanner', {
-      show: true,
-      title: 'Shop'
-    })
+    this.$store.commit('banner/setBannerTitle', 'Shop')
+    this.$store.commit('banner/setBannerSubtitle', this.product.title)
   },
   async asyncData({ app, params, error, payload, store }) {
     const response = await app.$shopRepository.getProductBySlug(params.slug)

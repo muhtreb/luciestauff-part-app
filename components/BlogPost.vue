@@ -1,12 +1,11 @@
 <template>
   <div class="blog-article-container">
-    <div
-      class="blog-article  cursor-pointer"
-      @click.prevent="goToBlogPost(blogPost)"
-    >
+    <div class="blog-article  cursor-pointer" @click.prevent="goToBlogPost()">
       <h3 class="blog-article-category">
         <span>{{
-          blogPost.categories.length > 0
+          homepage
+            ? 'Read Blog'
+            : blogPost.categories.length > 0
             ? blogPost.categories[0].name
             : 'No Category'
         }}</span>
@@ -15,25 +14,23 @@
         <div
           class="blog-article-image"
           :style="{
-            backgroundImage: 'url(' + getBlogPostImage(blogPost) + ')'
+            backgroundImage: 'url(' + getBlogPostImage + ')'
           }"
         ></div>
       </div>
       <h2 class="blog-article-title">
         <span class="black-bar"></span>
-        <span>{{ blogPost.title }}</span>
+        <span>{{ homepage ? 'Blog' : blogPost.title }}</span>
       </h2>
 
       <div class="blog-article-category-color"></div>
       <div class="blog-article-link">
-        <nuxt-link :to="{ name: 'blog-slug', params: { slug: blogPost.slug } }"
-          >Read</nuxt-link
-        >
+        <nuxt-link :to="getBlogPostUrl()">Read</nuxt-link>
       </div>
     </div>
     <div
       class="blog-article-products"
-      v-if="showProducts && blogPost.products.length > 0"
+      v-if="!homepage && showProducts && blogPost.products.length > 0"
     >
       <div class="flex -mx-2">
         <BlogProduct
@@ -53,23 +50,26 @@ import BlogProduct from '@/components/BlogProduct'
 export default {
   components: { BlogProduct },
   props: {
+    homepage: Boolean,
     blogPost: Object,
     showProducts: {
       type: Boolean,
       default: true
     }
   },
+  computed: {
+    getBlogPostImage() {
+      return this.homapge ? this.blogPost.image_url : ''
+    }
+  },
   methods: {
-    getBlogPostImage(blogPost) {
-      return blogPost.image_url // require(`@/assets/img/blog/${article.image}`)
+    goToBlogPost() {
+      this.$router.push(this.getBlogPostUrl())
     },
-    goToBlogPost(blogPost) {
-      this.$router.push({
-        name: 'blog-slug',
-        params: {
-          slug: blogPost.slug
-        }
-      })
+    getBlogPostUrl() {
+      return this.homepage
+        ? { name: 'blog' }
+        : { name: 'blog-slug', params: { slug: this.blogPost.slug } }
     }
   }
 }
@@ -97,36 +97,36 @@ export default {
     .blog-article-category-color {
       position: absolute;
       right: 0;
-      top: 100px;
-      border-bottom: 300px solid #f5e6df;
-      border-left: 100px solid transparent;
+      top: 90px;
+      border-bottom: 430px solid #f5e6df;
+      border-left: 130px solid transparent;
       border-right: 0 solid transparent;
       height: 0;
-      width: calc(20% + 100px);
+      width: calc(20% + 130px);
     }
 
     .blog-article-link {
       position: absolute;
-      right: -13px;
-      top: 330px;
-      border-bottom: 73px solid #1d5353;
+      right: 4px;
+      top: 440px;
+      border-bottom: 88px solid #1d5353;
       border-left: 20px solid transparent;
       border-right: 20px solid transparent;
       height: 0;
-      width: 81px;
+      width: 94px;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 50;
-      color: white;
-      transform: rotate(64deg);
-      transition: 0.2s ease transform;
+      color: #fff;
+      transform: rotate(36deg);
+      transition: transform 0.2s ease;
 
       a {
         position: absolute;
         top: 29px;
-        left: -10px;
-        transform: rotate(-64deg);
+        left: 0px;
+        transform: rotate(-37deg);
         text-transform: uppercase;
         transition: 0.2s ease transform;
       }
@@ -156,7 +156,7 @@ export default {
     .blog-article-title {
       position: absolute;
       right: 20px;
-      top: 118px;
+      top: 186px;
       z-index: 10;
       font-size: 18px;
       text-transform: uppercase;
@@ -164,12 +164,13 @@ export default {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      color: black;
+      color: #000;
       margin-bottom: 20px;
       max-width: 600px;
-      transition: 0.5s ease color;
-      background-color: rgba(255, 255, 255, 0.3);
+      transition: color 0.5s ease;
+      background-color: hsla(0, 0%, 100%, 0.3);
       padding: 10px;
+      width: 100%;
       .black-bar {
         height: 2px;
         margin-right: 10px;

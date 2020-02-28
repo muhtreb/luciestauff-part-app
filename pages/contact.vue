@@ -1,12 +1,9 @@
 <template>
   <div class="container">
     <div class="flex justify-center">
-      <div class="w-full">
+      <div class="w-full mb-20">
         <div class="banner banner--contact">
-          <h2 class="banner-title">
-            Let's connect,<br />
-            I will get back to you !
-          </h2>
+          <h2 class="banner-title" v-html="getTitle"></h2>
         </div>
         <h1 class="title title--left-lined"><span>Contact & Booking</span></h1>
 
@@ -77,11 +74,13 @@
                   v-slot="{ errors, classes }"
                 >
                   <div :class="classes">
-                    <input
+                    <datetime
                       v-model="contact.date"
-                      type="date"
-                      placeholder="Date"
-                    />
+                      placeholder="Event Date"
+                      format="yyyy-MM-dd"
+                      auto
+                    ></datetime>
+
                     <div class="errors">{{ errors[0] }}</div>
                   </div>
                 </ValidationProvider>
@@ -91,11 +90,12 @@
                   class="form-group"
                 >
                   <div :class="classes">
-                    <input
+                    <datetime
                       v-model="contact.time"
-                      type="time"
                       placeholder="Ready By Time"
-                    />
+                      type="time"
+                      auto
+                    ></datetime>
                     <div class="errors">{{ errors[0] }}</div>
                   </div>
                 </ValidationProvider>
@@ -146,6 +146,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import nl2br from 'nl2br'
 export default {
   head() {
     return {
@@ -159,6 +161,12 @@ export default {
       contact: {},
       success: false,
       errors: []
+    }
+  },
+  computed: {
+    ...mapState('setting', ['settings']),
+    getTitle() {
+      return nl2br(this.settings.contact.title)
     }
   },
   methods: {

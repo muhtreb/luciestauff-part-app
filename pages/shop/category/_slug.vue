@@ -28,11 +28,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('banner/setBanner', {
-      show: true,
-      title: 'Shop',
-      subtitle: this.productCategory.name
-    })
+    this.$store.commit('banner/setBannerTitle', 'Shop')
+    this.$store.commit('banner/setBannerSubtitle', this.productCategory.name)
   }
 }
 </script>

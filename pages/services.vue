@@ -80,12 +80,14 @@ export default {
   async asyncData({ app, params, store }) {
     const res = await Promise.all([
       store.dispatch('testimonial/getTestimonials'),
-      app.$portfolioRepository.getPortfolioCategoryBySlug('services-portfolio')
+      app.$portfolioRepository.getPortfolioCategoryBySlug('services-portfolio'),
+      app.$portfolioRepository.getPortfolioCategoryBySlug('services-banner')
     ])
 
     return {
       testimonials: store.state.testimonial.testimonials,
-      portfolioCategory: res[1].data
+      portfolioCategory: res[1].data,
+      bannerPortfolioCategory: res[2].data
     }
   },
   data() {
@@ -103,7 +105,9 @@ export default {
   mounted() {
     this.$store.commit('banner/setBanner', {
       show: true,
-      title: 'Services'
+      title: 'Services',
+      slider: true,
+      sliderMedias: this.bannerPortfolioCategory.medias
     })
   },
   methods: {

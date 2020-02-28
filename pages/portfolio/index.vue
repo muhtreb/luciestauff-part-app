@@ -12,10 +12,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('banner/setBanner', {
-      show: true,
-      title: 'Portfolio'
-    })
+    this.$store.commit('banner/setBannerTitle', 'Portfolio')
+    this.$store.commit('banner/setBannerSubtitle', false)
 
     this.$router.push({
       name: 'portfolio-category-slug',

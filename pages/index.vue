@@ -3,7 +3,7 @@
     <div class="container">
       <div class="about">
         <div class="about-picture">
-          <img src="~/assets/img/profile.jpg" />
+          <img :src="settings.homepage.about.profile_picture_url" />
         </div>
         <nav class="about-nav">
           <a
@@ -37,16 +37,18 @@
       </div>
     </div>
 
-    <div class="banner banner--homepage-services">
+    <div
+      class="banner banner--homepage-services"
+      :style="{
+        backgroundImage: `url(${settings.homepage.services.banner_picture_url})`
+      }"
+    >
       <h2 class="banner-title">Services</h2>
     </div>
 
     <div class="container">
       <div class="services">
-        <h3 class="services-title">
-          We do make up & hair fashion every<br />
-          special occasion
-        </h3>
+        <h3 class="services-title" v-html="getServicesContent"></h3>
       </div>
     </div>
 
@@ -62,13 +64,7 @@
 
     <div class="blog">
       <div class="container">
-        <h2 class="title"><span>Blog</span></h2>
-        <BlogPost
-          v-for="blogPost in blogPosts"
-          :key="blogPost.id"
-          :blog-post="blogPost"
-          :show-products="false"
-        ></BlogPost>
+        <BlogPost :homepage="true"></BlogPost>
       </div>
     </div>
   </div>
@@ -76,6 +72,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import nl2br from 'nl2br'
 import marked from 'marked'
 import BlogPost from '@/components/BlogPost'
 import PortfolioSlider from '@/components/PortfolioSlider'
@@ -128,7 +125,10 @@ export default {
     }
   },
   computed: {
-    ...mapState('setting', ['settings'])
+    ...mapState('setting', ['settings']),
+    getServicesContent() {
+      return nl2br(this.settings.homepage.services.content)
+    }
   }
 }
 </script>

@@ -32,11 +32,8 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('banner/setBanner', {
-      show: true,
-      title: 'Le Blog',
-      subtitle: this.blogPostCategory.name
-    })
+    this.$store.commit('banner/setBannerTitle', 'Le Blog')
+    this.$store.commit('banner/setBannerSubtitle', this.blogPostCategory.name)
   }
 }
 </script>

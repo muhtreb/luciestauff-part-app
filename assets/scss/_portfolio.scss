@@ -26,10 +26,34 @@ body.page-portfolio {
     }
   }
 
+  .portfolio--sticky {
+    .portfolio-nav {
+      position: fixed;
+      top: 120px;
+      z-index: 99;
+      background: white;
+      width: 100%;
+    }
+
+    .portfolio-content {
+      margin-top: 90px;
+    }
+  }
+
   .portfolio-masonry {
     .portfolio-masonry-item {
       cursor: pointer;
       margin-bottom: 20px;
+    }
+  }
+}
+
+@screen sm {
+  body.page-portfolio {
+    .portfolio--sticky {
+      .portfolio-nav {
+        top: 90px;
+      }
     }
   }
 }

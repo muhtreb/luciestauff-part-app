@@ -27,10 +27,22 @@ export default {
     }
   },
   async asyncData({ app, params, store }) {
-    await store.dispatch('blog/getBlogPostCategories')
+    const res = await Promise.all([
+      store.dispatch('blog/getBlogPostCategories'),
+      app.$portfolioRepository.getPortfolioCategoryBySlug('blog-banner')
+    ])
+
     return {
-      blogPostCategories: store.state.blog.blogPostCategories
+      blogPostCategories: store.state.blog.blogPostCategories,
+      bannerPortfolioCategory: res[1].data
     }
+  },
+  mounted() {
+    this.$store.commit('banner/setBannerSlider', {
+      show: true,
+      slider: true,
+      sliderMedias: this.bannerPortfolioCategory.medias
+    })
   }
 }
 </script>

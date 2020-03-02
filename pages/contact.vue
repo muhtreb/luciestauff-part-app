@@ -38,21 +38,42 @@
                 </div>
               </div>
               <div class="w-full desktop:w-1/3 px-2">
-                <ValidationProvider
-                  name="name"
-                  rules="required"
-                  v-slot="{ errors, classes }"
-                  class="form-group"
-                >
-                  <div :class="classes">
-                    <input
-                      v-model="contact.name"
-                      type="text"
-                      placeholder="Name"
-                    />
-                    <div class="errors">{{ errors[0] }}</div>
+                <div class="flex flex-wrap mb-4 -mx-2">
+                  <div class="mb-4 px-2 desktop:mb-0 w-full desktop:w-1/2">
+                    <ValidationProvider
+                      name="last_name"
+                      rules="required"
+                      v-slot="{ errors, classes }"
+                      class="form-group"
+                    >
+                      <div :class="classes">
+                        <input
+                          v-model="contact.last_name"
+                          type="text"
+                          placeholder="Last Name"
+                        />
+                        <div class="errors">{{ errors[0] }}</div>
+                      </div>
+                    </ValidationProvider>
                   </div>
-                </ValidationProvider>
+                  <div class="w-full px-2 desktop:w-1/2">
+                    <ValidationProvider
+                      name="first_name"
+                      rules="required"
+                      v-slot="{ errors, classes }"
+                      class="form-group"
+                    >
+                      <div :class="classes">
+                        <input
+                          v-model="contact.first_name"
+                          type="text"
+                          placeholder="First Name"
+                        />
+                        <div class="errors">{{ errors[0] }}</div>
+                      </div>
+                    </ValidationProvider>
+                  </div>
+                </div>
                 <ValidationProvider
                   name="email"
                   rules="required|email"
@@ -63,11 +84,28 @@
                     <input
                       v-model="contact.email"
                       placeholder="Email"
-                      type="text"
+                      type="email"
                     />
                     <div class="errors">{{ errors[0] }}</div>
                   </div>
                 </ValidationProvider>
+
+                <ValidationProvider
+                  name="phone_number"
+                  rules="required"
+                  v-slot="{ errors, classes }"
+                  class="form-group"
+                >
+                  <div :class="classes">
+                    <input
+                      v-model="contact.phone_number"
+                      placeholder="Phone Number"
+                      type="tel"
+                    />
+                    <div class="errors">{{ errors[0] }}</div>
+                  </div>
+                </ValidationProvider>
+
                 <ValidationProvider
                   class="form-group"
                   name="date"
@@ -148,6 +186,8 @@
 <script>
 import { mapState } from 'vuex'
 import nl2br from 'nl2br'
+import moment from 'moment'
+
 export default {
   head() {
     return {
@@ -173,7 +213,21 @@ export default {
     async submit() {
       const formData = new FormData()
       for (const [key, value] of Object.entries(this.contact)) {
-        formData.append(key, value)
+        switch (key) {
+          case 'date':
+            formData.append(
+              key,
+              value ? moment(value).format('YYYY-MM-DD') : ''
+            )
+            break
+
+          case 'time':
+            formData.append(key, value ? moment(value).format('HH:mm:ss') : '')
+            break
+          default:
+            formData.append(key, value)
+            break
+        }
       }
       try {
         await this.$contactRepository.createContactMessage(formData)

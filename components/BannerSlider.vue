@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div
+    class="banner-slider"
+    :class="{
+      'banner-slider--hidden': !show,
+      'banner-slider--loading': loading
+    }"
+  >
     <div class="banner-content">
       <h1 class="banner-slider-title" v-html="title"></h1>
       <h2 class="banner-slider-subtitle" v-if="subtitle" v-html="subtitle"></h2>
@@ -17,7 +23,7 @@
           :key="`carousel-banner-${$route.name}-${media.id}`"
           class="slide-image"
           :style="{
-            backgroundImage: `url(${media.image_url})`
+            backgroundImage: `url(${media.large_image_url})`
           }"
         ></div>
       </slick>
@@ -27,10 +33,11 @@
 
 <script>
 export default {
-  props: ['title', 'subtitle', 'medias'],
+  props: ['title', 'subtitle', 'medias', 'show'],
   data() {
     return {
       init: true,
+      loading: true,
       slickOptions: {
         infinite: true,
         speed: 1000,
@@ -46,6 +53,13 @@ export default {
   },
   watch: {
     medias(oldValue, newValue) {
+      this.loading = true
+      setTimeout(() => {
+        console.log('loading ended')
+        console.log(this)
+        this.loading = false
+      }, 500)
+
       if (this.medias.length > 0 && this.$refs.bannerSlick) {
         const currIndex = this.$refs.bannerSlick.currentSlide()
         this.$refs.bannerSlick.destroy()
@@ -69,6 +83,22 @@ export default {
   &.banner-slider--hidden {
     height: 0 !important;
     opacity: 0;
+  }
+
+  &:after {
+    content: '';
+    background: rgba(255, 255, 255, 0);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease background-color;
+  }
+  &.banner-slider--loading {
+    &:after {
+      // background: rgba(255, 255, 255, 0.98);
+    }
   }
 
   .banner-content {

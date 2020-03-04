@@ -90,12 +90,10 @@
     </div> -->
 
     <BannerSlider
-      class="banner-slider"
-      :class="{ 'banner-slider--hidden': !bannerShow }"
+      :show="bannerShow"
       :title="bannerTitle"
       :subtitle="bannerSubtitle"
       :medias="bannerSliderMedias"
-      :key="`banner-slider-${$route.name}`"
     ></BannerSlider>
 
     <div class="content-wrapper">

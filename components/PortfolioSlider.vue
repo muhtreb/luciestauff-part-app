@@ -18,7 +18,7 @@
             class="portfolio-media"
             @click="lightboxIndex = index"
           >
-            <img v-if="media.type === 'image'" :src="media.image_url" />
+            <img v-if="media.type === 'image'" :src="media.small_image_url" />
             <video
               muted="muted"
               loop

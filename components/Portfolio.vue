@@ -19,7 +19,7 @@
           :key="`image-${media.id}`"
           @click="lightboxIndex = index"
         >
-          <img v-if="media.type === 'image'" :src="media.image_url" />
+          <img v-if="media.type === 'image'" :src="media.small_image_url" />
           <video
             muted="muted"
             loop
@@ -68,7 +68,7 @@ export default {
             media.type === 'image'
               ? media.small_image_url
               : media.thumbnail_url,
-          src: media.type === 'image' ? media.image_url : media.video_url
+          src: media.type === 'image' ? media.medium_image_url : media.video_url
         })
       }
       return medias

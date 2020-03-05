@@ -42,7 +42,7 @@ body.page-shop {
   }
 }
 
-@screen sm {
+@media screen and (max-width: 1279px) {
   body.page-shop {
     .shop--sticky {
       .shop-categories {

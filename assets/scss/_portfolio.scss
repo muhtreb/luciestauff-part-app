@@ -48,7 +48,7 @@ body.page-portfolio {
   }
 }
 
-@screen sm {
+@media screen and (max-width: 1279px) {
   body.page-portfolio {
     .portfolio--sticky {
       .portfolio-nav {

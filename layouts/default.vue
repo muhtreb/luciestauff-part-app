@@ -25,6 +25,21 @@
               @click.native="showMobileMenu = false"
               >{{ menuItem.title }}</nuxt-link
             >
+
+            <div class="header-social-links">
+              <a v-if="getTwitterUrl()" :href="getTwitterUrl()">
+                <fa :icon="['fab', 'twitter']"
+              /></a>
+              <a v-if="getFacebookUrl()" :href="getFacebookUrl()">
+                <fa :icon="['fab', 'facebook-f']"
+              /></a>
+              <a v-if="getPinterestUrl()" :href="getPinterestUrl()">
+                <fa :icon="['fab', 'pinterest-p']"
+              /></a>
+              <a v-if="getInstagramUrl()" :href="getInstagramUrl()">
+                <fa :icon="['fab', 'instagram']"
+              /></a>
+            </div>
           </nav>
         </div>
 
@@ -55,21 +70,6 @@
               >{{ menuItem.title }}</nuxt-link
             >
           </nav>
-        </div>
-
-        <div class="header-social-links">
-          <a v-if="getTwitterUrl()" :href="getTwitterUrl()">
-            <fa :icon="['fab', 'twitter']"
-          /></a>
-          <a v-if="getFacebookUrl()" :href="getFacebookUrl()">
-            <fa :icon="['fab', 'facebook-f']"
-          /></a>
-          <a v-if="getPinterestUrl()" :href="getPinterestUrl()">
-            <fa :icon="['fab', 'pinterest-p']"
-          /></a>
-          <a v-if="getInstagramUrl()" :href="getInstagramUrl()">
-            <fa :icon="['fab', 'instagram']"
-          /></a>
         </div>
       </div>
     </header>
@@ -109,13 +109,42 @@
             </h3>
             <div class="footer-instagram-pictures">
               <a
-                v-for="image in images"
+                v-for="(image, index) in images"
                 :key="`instagram-${image.id}`"
                 :href="image.url"
                 class="footer-instagram-picture"
                 target="_blank"
               >
-                <img :src="image.picture" />
+                <fa
+                  v-if="image.type === 'video'"
+                  :icon="['fas', 'video']"
+                  class="icon"
+                />
+                <fa
+                  v-if="image.type === 'carousel'"
+                  class="icon"
+                  :icon="['far', 'images']"
+                />
+                <img
+                  :src="image.picture"
+                  v-if="image.type === 'image' || image.type === 'carousel'"
+                />
+                <div
+                  class="footer-instagram-picture-video"
+                  v-if="image.type === 'video'"
+                >
+                  <video
+                    muted="muted"
+                    loop
+                    :ref="`video-${index}`"
+                    :poster="image.picture"
+                    @mouseover="playVideo(index)"
+                    @mouseleave="pauseVideo(index)"
+                  >
+                    <source :src="image.video" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
               </a>
             </div>
           </div>
@@ -234,6 +263,12 @@ export default {
     },
     getPhoneNumber() {
       return this.settings.phone_number || ''
+    },
+    playVideo(index) {
+      this.$refs[`video-${index}`][0].play()
+    },
+    pauseVideo(index) {
+      this.$refs[`video-${index}`][0].pause()
     }
   }
 }

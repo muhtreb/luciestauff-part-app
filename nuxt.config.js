@@ -63,7 +63,7 @@ export default {
         component: 'fa',
         icons: {
           solid: ['faBars', 'faTimes', 'faVideo'],
-          regular: ['faStar'],
+          regular: ['faStar', 'faImages'],
           brands: ['faTwitter', 'faFacebookF', 'faInstagram', 'faPinterestP']
         }
       }

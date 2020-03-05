@@ -19,13 +19,23 @@
         v-if="medias.length > 0"
       >
         <div
-          v-for="media in medias"
+          v-for="(media, index) in medias"
           :key="`carousel-banner-${$route.name}-${media.id}`"
-          class="slide-image"
-          :style="{
-            backgroundImage: `url(${media.large_image_url})`
-          }"
-        ></div>
+          class="slide-container"
+        >
+          <div
+            v-if="media.type === 'image'"
+            class="slide-image"
+            :style="{
+              backgroundImage: `url(${media.large_image_url})`
+            }"
+          ></div>
+          <div v-if="media.type === 'video'" class="slide-video">
+            <video autoplay muted loop :id="`video-${index}`">
+              <source :src="media.video_url" type="video/mp4" />
+            </video>
+          </div>
+        </div>
       </slick>
     </client-only>
   </div>
@@ -132,14 +142,29 @@ export default {
     height: 100%;
 
     margin-bottom: 100px;
+    > div {
+      height: 100%;
+    }
     .slick-list {
       padding: 0 !important;
       .slick-slide {
         height: 300px;
-        .slide-image {
-          height: 300px;
-          background-position: center center;
-          background-size: cover;
+        .slide-container {
+          height: 100%;
+          .slide-image {
+            height: 300px;
+            background-position: center center;
+            background-size: cover;
+          }
+          .slide-video {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            video {
+              width: 100%;
+            }
+          }
         }
       }
     }

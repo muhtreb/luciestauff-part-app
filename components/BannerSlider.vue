@@ -142,13 +142,13 @@ export default {
     height: 100%;
 
     margin-bottom: 100px;
-    > div {
-      height: 100%;
-    }
     .slick-list {
       padding: 0 !important;
       .slick-slide {
         height: 300px;
+        > div {
+          height: 100%;
+        }
         .slide-container {
           height: 100%;
           .slide-image {
@@ -163,6 +163,8 @@ export default {
             justify-content: center;
             video {
               width: 100%;
+              height: 100%;
+              object-fit: cover;
             }
           }
         }

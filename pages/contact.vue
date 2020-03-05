@@ -140,6 +140,7 @@
                 <ValidationProvider
                   name="location"
                   class="form-group"
+                  rules="required"
                   v-slot="{ errors, classes }"
                 >
                   <div :class="classes">

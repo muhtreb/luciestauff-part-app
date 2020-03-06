@@ -136,6 +136,17 @@ body.page-homepage {
       max-width: 900px;
       margin: 200px 0 150px;
     }
+
+    .blog-article-container {
+      .blog-article {
+        .blog-article-title {
+          background: transparent;
+          max-width: 300px;
+          width: 100%;
+          display: flex;
+        }
+      }
+    }
   }
 }
 

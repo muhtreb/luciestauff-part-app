@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import BlogProduct from '@/components/BlogProduct'
 export default {
   components: { BlogProduct },
@@ -59,8 +60,11 @@ export default {
   },
   computed: {
     getBlogPostImage() {
-      return this.homapge ? this.blogPost.image_url : ''
-    }
+      return !this.homepage
+        ? this.blogPost.image_url
+        : this.settings.homepage.blog.picture_url
+    },
+    ...mapState('setting', ['settings'])
   },
   methods: {
     goToBlogPost() {
@@ -221,11 +225,12 @@ export default {
       .blog-article-title {
         top: 60px;
         font-size: 14px;
-        height: 56px;
+        height: 40px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        width: 74%;
+        max-width: 74%;
+        width: auto;
         display: block;
       }
       .blog-article-link {

@@ -53,13 +53,14 @@ export default {
       slickOptions: {
         speed: 800,
         slidesToShow: 3,
-        centerMode: true,
+        centerMode: false,
         variableWidth: true,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
         adaptiveHeight: true,
-        appendArrows: false
+        appendArrows: false,
+        swipe: false
       }
     }
   },

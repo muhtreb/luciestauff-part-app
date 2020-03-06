@@ -65,8 +65,6 @@ export default {
     medias(oldValue, newValue) {
       this.loading = true
       setTimeout(() => {
-        console.log('loading ended')
-        console.log(this)
         this.loading = false
       }, 500)
 

@@ -39,9 +39,7 @@
 
     <div
       class="banner banner--homepage-services"
-      :style="{
-        backgroundImage: `url(${settings.homepage.services.banner_picture_url})`
-      }"
+      v-lazy:background-image="settings.homepage.services.banner_picture_url"
     >
       <h2 class="banner-title">Services</h2>
     </div>

@@ -19,7 +19,7 @@
           :key="`image-${media.id}`"
           @click="lightboxIndex = index"
         >
-          <img v-if="media.type === 'image'" :src="media.small_image_url" />
+          <img v-if="media.type === 'image'" v-lazy="media.small_image_url" />
           <video
             muted="muted"
             loop
@@ -86,9 +86,19 @@ export default {
 </script>
 
 <style lang="scss">
+img[lazy='loading'] {
+  background: #f1f1f1;
+}
+img[lazy='error'] {
+  display: none;
+}
 .portfolio-masonry {
   .portfolio-masonry-item {
     position: relative;
+    video,
+    img {
+      width: 100%;
+    }
     .portfolio-media-icon {
       position: absolute;
       top: 3px;

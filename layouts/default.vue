@@ -14,7 +14,7 @@
           </nav>
           <div class="header-nav-logo">
             <nuxt-link to="/">
-              <img src="~/assets/img/logo-large.png" />
+              <img src="~/assets/img/logo.png" />
             </nuxt-link>
           </div>
           <nav class="header-nav-right">
@@ -46,7 +46,7 @@
         <div class="header-nav header-nav--mobile">
           <div class="header-nav-logo">
             <nuxt-link to="/">
-              <img src="~/assets/img/logo-large.png" />
+              <img src="~/assets/img/logo.png" />
             </nuxt-link>
           </div>
           <a

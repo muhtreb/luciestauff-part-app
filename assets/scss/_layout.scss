@@ -77,6 +77,7 @@ body {
       flex-basis: 30%;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
     }
 
     .header-nav-logo {
@@ -142,7 +143,7 @@ body {
   padding: 40px;
   background-color: #f5e6df;
   .footer-contact {
-    padding: 0 0px 0px 40px;
+    padding: 0 0px 0px 100px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -166,7 +167,7 @@ body {
       }
     }
     .footer-contact-title {
-      margin-top: 40px;
+      margin-top: 70px;
       text-align: center;
       color: #194339;
       font-size: 28px;
@@ -177,7 +178,7 @@ body {
   }
 
   .footer-instagram {
-    padding: 0 40px 0px 0px;
+    padding: 0 100px 0px 0px;
     position: relative;
     display: flex;
     align-items: flex-start;

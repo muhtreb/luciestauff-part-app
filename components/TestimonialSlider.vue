@@ -104,9 +104,9 @@ export default {
           }
           .slide-testimonial-content {
             margin-top: 40px;
-            font-size: 24px;
+            font-size: 20px;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-align: center;
             font-weight: lighter;
             line-height: 35px;

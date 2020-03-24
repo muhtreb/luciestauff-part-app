@@ -207,11 +207,13 @@ export default {
           route: { name: 'blog' },
           right: true
         },
+        /*
         {
           title: 'Shop',
           route: { name: 'shop' },
           right: true
         },
+        */
         {
           title: 'Contact',
           route: { name: 'contact' },

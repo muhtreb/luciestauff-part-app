@@ -15,16 +15,14 @@
           <form class="contact-form" @submit.prevent="handleSubmit(submit)">
             <div class="flex flex-wrap -mx-2">
               <div class="w-full px-2 mb-4">
-                <div
-                  class="flex flex-wrap contact-form-services justify-center items-center"
-                >
+                <div class="flex flex-wrap contact-form-services items-center">
                   <span
-                    class="flex-grow mb-2 w-full desktop:w-auto desktop:mb-0"
+                    class="w-full desktop:w-1/3 mb-2 desktop:mb-0 desktop:text-left text-center"
                   >
                     How many services would you need
                   </span>
                   <div
-                    class="flex justify-center ml-0 desktop:ml-4 w-full desktop:w-auto"
+                    class="flex w-full desktop:w-2/3 justify-center desktop:justify-start desktop:pl-3 pl-0"
                   >
                     <div class="flex items-center mr-4">
                       <label class="mr-2">Makeup</label>
@@ -115,8 +113,9 @@
                     <datetime
                       v-model="contact.date"
                       placeholder="Event Date"
-                      format="yyyy-MM-dd"
+                      format="dd/MM/yyyy"
                       auto
+                      class="theme-blue"
                     ></datetime>
 
                     <div class="errors">{{ errors[0] }}</div>
@@ -133,6 +132,7 @@
                       placeholder="Ready By Time"
                       type="time"
                       auto
+                      class="theme-blue"
                     ></datetime>
                     <div class="errors">{{ errors[0] }}</div>
                   </div>

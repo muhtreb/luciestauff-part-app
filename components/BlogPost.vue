@@ -34,7 +34,7 @@
     >
       <div class="flex -mx-2">
         <BlogProduct
-          class="w-1/3 px-2"
+          class="w-1/3 desktop:w-1/6 px-2"
           v-for="product in blogPost.products"
           :key="product.id"
           :product="product"

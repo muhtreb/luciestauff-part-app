@@ -57,6 +57,7 @@
 
       <PortfolioSlider
         :portfolio-category="sliderPortfolioCategory"
+        :homepage="true"
       ></PortfolioSlider>
     </div>
 

@@ -16,7 +16,7 @@
             v-for="(media, index) in portfolioCategory.medias"
             :key="`carousel-${media.id}`"
             class="portfolio-media"
-            @click="lightboxIndex = index"
+            @click="onClickMedia(media, index)"
           >
             <img v-if="media.type === 'image'" v-lazy="media.small_image_url" />
             <video
@@ -45,7 +45,13 @@
 import PortfolioLightbox from '@/components/PortfolioLightbox'
 export default {
   components: { PortfolioLightbox },
-  props: ['portfolioCategory'],
+  props: {
+    portfolioCategory: Object,
+    homepage: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       init: false,
@@ -75,6 +81,13 @@ export default {
     },
     pauseVideo(media) {
       this.$refs[`video-${media.id}`][0].pause()
+    },
+    onClickMedia(media, index) {
+      if (!this.homepage) {
+        this.lightboxIndex = index
+      } else {
+        this.$router.push('/portfolio')
+      }
     }
   }
 }

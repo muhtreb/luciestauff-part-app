@@ -115,7 +115,7 @@ export default {
       this.aboutNav = nav
     },
     getAboutPicture() {
-      return require(`@/assets/img/21.jpg`)
+      return this.settings.services.about.picture_url
     },
     toMarkdown(value) {
       return value ? marked(value) : ''

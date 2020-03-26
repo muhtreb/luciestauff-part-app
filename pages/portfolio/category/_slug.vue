@@ -6,14 +6,16 @@
 
 <script>
 import Portfolio from '@/components/Portfolio'
-
+import SEO from '@/components/SEO'
 export default {
+  mixins: [SEO],
   components: { Portfolio },
   head() {
     return {
       bodyAttrs: {
         class: ['page-portfolio']
-      }
+      },
+      title: this.getSeoTitle(`${this.portfolioCategory.name} | Portfolio`)
     }
   },
   mounted() {

@@ -4,13 +4,16 @@
 
 <script>
 import BlogPosts from '@/components/BlogPosts'
+import SEO from '@/components/SEO'
 export default {
+  mixins: [SEO],
   components: { BlogPosts },
   head() {
     return {
       bodyAttrs: {
         class: ['page-blog-articles', 'page-blog']
-      }
+      },
+      title: this.getSeoTitle('Blog')
     }
   },
   async asyncData({ app, params, store }) {

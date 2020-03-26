@@ -74,8 +74,10 @@ import { mapState } from 'vuex'
 import marked from 'marked'
 import PortfolioSlider from '@/components/PortfolioSlider'
 import TestimonialSlider from '@/components/TestimonialSlider'
+import SEO from '@/components/SEO'
 
 export default {
+  mixins: [SEO],
   components: { PortfolioSlider, TestimonialSlider },
   async asyncData({ app, params, store }) {
     const res = await Promise.all([
@@ -99,7 +101,8 @@ export default {
     return {
       bodyAttrs: {
         class: ['page-services']
-      }
+      },
+      title: this.getSeoTitle('Services')
     }
   },
   mounted() {

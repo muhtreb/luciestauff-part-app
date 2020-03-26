@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="product cursor-pointer"
-    :key="product.id"
-    @click="goToProduct(product)"
-  >
+  <div class="product" :key="product.id">
     <div class="product-image">
       <img :src="product.image_url" />
     </div>
@@ -12,12 +8,15 @@
 </template>
 
 <script>
+import SEO from '@/components/SEO'
 export default {
+  mixins: [SEO],
   head() {
     return {
       bodyAttrs: {
         class: ['page-shop-detail', 'page-shop']
-      }
+      },
+      title: this.getSeoTitle(`${this.product.title} | Shop`)
     }
   },
   mounted() {

@@ -75,14 +75,16 @@ import nl2br from 'nl2br'
 import marked from 'marked'
 import BlogPost from '@/components/BlogPost'
 import PortfolioSlider from '@/components/PortfolioSlider'
-
+import SEO from '@/components/SEO'
 export default {
+  mixins: [SEO],
   components: { BlogPost, PortfolioSlider },
   head() {
     return {
       bodyAttrs: {
         class: ['page-homepage']
-      }
+      },
+      title: this.getSeoTitle('Home')
     }
   },
   mounted() {

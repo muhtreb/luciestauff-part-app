@@ -28,14 +28,16 @@
 <script>
 import marked from 'marked'
 import BlogProduct from '@/components/BlogProduct'
-
+import SEO from '@/components/SEO'
 export default {
+  mixins: [SEO],
   components: { BlogProduct },
   head() {
     return {
       bodyAttrs: {
         class: ['page-blog-detail', 'page-blog']
-      }
+      },
+      title: this.getSeoTitle(`${this.blogPost.title} | Blog`)
     }
   },
   mounted() {

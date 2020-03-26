@@ -7,7 +7,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Lucie Stauff',
+    title: "L'atelier Hair & Make Up",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -18,7 +18,7 @@ export default {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
       {
         rel: 'stylesheet',
         href:

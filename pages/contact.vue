@@ -188,13 +188,16 @@
 import { mapState } from 'vuex'
 import nl2br from 'nl2br'
 import moment from 'moment'
+import SEO from '@/components/SEO'
 
 export default {
+  mixins: [SEO],
   head() {
     return {
       bodyAttrs: {
         class: ['page-contact']
-      }
+      },
+      title: this.getSeoTitle('Contact')
     }
   },
   data() {

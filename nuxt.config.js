@@ -2,7 +2,7 @@ const env = require('dotenv').config()
 import axios from 'axios'
 
 export default {
-  mode: 'universal',
+  ssr: true,
   /*
    ** Headers of the page
    */

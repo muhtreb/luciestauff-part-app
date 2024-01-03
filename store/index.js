@@ -1,5 +1,4 @@
 async function initActions(dispatch) {
-  await dispatch('instagram/getImages')
   await dispatch('setting/getSettings')
 }
 

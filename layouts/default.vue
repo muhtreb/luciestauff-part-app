@@ -103,51 +103,6 @@
     <footer class="footer">
       <div class="container">
         <div class="flex flex-wrap flex-col-reverse desktop:flex-row">
-          <div class="footer-instagram w-full desktop:w-1/2 mt-10 desktop:mt-0">
-            <h3 class="footer-instagram-title">
-              <span>Instagram</span>
-            </h3>
-            <div class="footer-instagram-pictures">
-              <a
-                v-for="(image, index) in images"
-                :key="`instagram-${image.id}`"
-                :href="image.url"
-                class="footer-instagram-picture"
-                target="_blank"
-              >
-                <fa
-                  v-if="image.type === 'video'"
-                  :icon="['fas', 'video']"
-                  class="icon"
-                />
-                <fa
-                  v-if="image.type === 'carousel'"
-                  class="icon"
-                  :icon="['far', 'images']"
-                />
-                <img
-                  :src="image.picture"
-                  v-if="image.type === 'image' || image.type === 'carousel'"
-                />
-                <div
-                  class="footer-instagram-picture-video"
-                  v-if="image.type === 'video'"
-                >
-                  <video
-                    muted="muted"
-                    loop
-                    :ref="`video-${index}`"
-                    :poster="image.picture"
-                    @mouseover="playVideo(index)"
-                    @mouseleave="pauseVideo(index)"
-                  >
-                    <source :src="image.video" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              </a>
-            </div>
-          </div>
           <div class="footer-contact w-full desktop:w-1/2 ">
             <h2 class="footer-contact-title">L'atelier Hair & Make-Up</h2>
             <div class="footer-contact-details">
@@ -244,7 +199,6 @@ export default {
     bannerSliderMedias() {
       return this.$store.state.banner.sliderMedias
     },
-    ...mapState('instagram', ['images']),
     ...mapState('setting', ['settings'])
   },
   methods: {
